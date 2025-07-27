@@ -106,6 +106,7 @@ export async function GET(_request: NextRequest) {
       totalVotesCast,
       activeVoters,
       avgParticipation,
+      byCategory,
     });
   } catch (error) {
     console.error("Error fetching vote statistics:", error);
