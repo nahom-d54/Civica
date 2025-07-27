@@ -1,9 +1,10 @@
-import { auth } from "@/lib/auth";
+import { auth, getServerSession } from "@/lib/auth";
 import { headers } from "next/headers";
 import { db } from "@/lib/db";
-import { proposals, votes, feedback, users, admins } from "@/lib/db/schema";
+import { proposals, votes, feedback, user, admins } from "@/lib/db/schema";
 import { eq, count, and, gte } from "drizzle-orm";
 import AdminDashboardClient from "./admin-dashboard-client";
+import { redirect } from "next/navigation";
 
 export default async function AdminDashboardPage({
   params,
@@ -11,13 +12,15 @@ export default async function AdminDashboardPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect(`/${locale}/sign-in`);
+  }
 
   // Get admin role
   const adminRole = await db.query.admins.findFirst({
-    where: eq(admins.userId, session!.user.id),
+    where: eq(admins.userId, session.user.id),
   });
 
   // Get statistics
@@ -40,7 +43,7 @@ export default async function AdminDashboardPage({
       .select({ count: count() })
       .from(feedback)
       .where(eq(feedback.status, "pending")),
-    db.select({ count: count() }).from(users),
+    db.select({ count: count() }).from(user),
   ]);
 
   // Get recent proposals

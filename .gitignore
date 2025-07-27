@@ -26,3 +26,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 notes.txt
+
+scripts/find-missing-translations.ts

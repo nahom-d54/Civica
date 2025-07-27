@@ -21,6 +21,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
+import { adminSelect } from "@/lib/types";
 
 interface AdminDashboardClientProps {
   stats: {
@@ -32,7 +33,7 @@ interface AdminDashboardClientProps {
   };
   recentProposals: any[];
   recentFeedback: any[];
-  adminRole: any;
+  adminRole?: adminSelect;
 }
 
 export default function AdminDashboardClient({
@@ -92,14 +93,14 @@ export default function AdminDashboardClient({
           <p className="text-gray-600 mt-1">{t("admin.welcomeBack")}</p>
         </div>
         <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-          {adminRole.role} • {adminRole.assignedRegion}
+          {adminRole?.jobDescription} • {adminRole?.assignedRegion}
         </Badge>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         {statCards.map((stat, index) => (
-          <Card key={index}>
+          <Card key={`stat-${stat.title}-${stat.value}`} className="shadow-sm">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>

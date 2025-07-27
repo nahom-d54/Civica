@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { user, admins } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import AdminSidebar from "./admin-sidebar";
+import { checkAdminRole } from "@/lib/utils";
 
 export default async function AdminLayout({
   children,
@@ -22,26 +23,18 @@ export default async function AdminLayout({
     redirect(`/${locale}/sign-in`);
   }
 
-  // Check if user is admin
-  const userData = await db.query.user.findFirst({
-    where: eq(user.id, session.user.id),
-  });
-
-  if (!userData) {
-    redirect(`/${locale}/sign-in`);
-  }
-
-  const adminRole = await db.query.admins.findFirst({
-    where: eq(admins.userId, userData.id),
-  });
-
-  if (!adminRole) {
+  console.log("Session User:", session.user);
+  if (!checkAdminRole(session.user.role)) {
     redirect(`/${locale}/dashboard`);
   }
 
+  const adminRole = await db.query.admins.findFirst({
+    where: eq(admins.userId, session.user.id),
+  });
+
   return (
     <div className="flex h-screen bg-gray-50">
-      <AdminSidebar adminRole={adminRole} locale={locale} />
+      <AdminSidebar adminRole={adminRole} locale={locale} user={session.user} />
       <main className="flex-1 overflow-y-auto">
         <div className="p-6">{children}</div>
       </main>

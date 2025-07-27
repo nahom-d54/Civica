@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,15 +27,12 @@ import {
 } from "@/components/ui/form";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
-export default function SignInPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default function SignInPage() {
   const t = useTranslations();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+  const { locale } = useParams();
 
   const form = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),

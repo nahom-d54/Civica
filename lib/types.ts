@@ -9,12 +9,18 @@ import type {
   user,
   votes,
 } from "./db/schema";
-import type { locales, priority, voteChoices } from "./constants";
+import type {
+  locales,
+  priority,
+  proposalScopes,
+  voteChoices,
+} from "./constants";
 import type { GetStatisticsResponse } from "@/app/api/statistics/route";
 import { NextResponse } from "next/server";
 
 export type proposalSelect = typeof proposals.$inferSelect;
 export type proposalInsert = typeof proposals.$inferInsert;
+export type proposalScopeType = (typeof proposalScopes)[number];
 
 export type voteSelect = typeof votes.$inferSelect;
 export type voteInsert = typeof votes.$inferInsert;
@@ -53,3 +59,7 @@ type ExtractNextResponsePayload<T> = T extends NextResponse<infer P>
 export type getStatisticsType = ExtractNextResponsePayload<
   Extract<GetStatisticsResponse, NextResponse<{ votes: any }>>
 >;
+
+export type adminWithUser = adminSelect & {
+  user: userSelect;
+};

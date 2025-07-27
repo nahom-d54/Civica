@@ -18,16 +18,24 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { adminSelect, adminWithUser } from "@/lib/types";
 
 interface AdminSidebarProps {
-  adminRole: any;
+  adminRole?: adminSelect;
   locale: string;
+  user: { id: string; role: string; name: string };
 }
 
-export default function AdminSidebar({ adminRole, locale }: AdminSidebarProps) {
+export default function AdminSidebar({
+  adminRole,
+  locale,
+  user,
+}: AdminSidebarProps) {
   const t = useTranslations();
   const pathname = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  console.log("Admin Role:", adminRole);
 
   const navigation = [
     {
@@ -48,12 +56,17 @@ export default function AdminSidebar({ adminRole, locale }: AdminSidebarProps) {
       icon: CheckSquare,
       current: pathname.startsWith(`/${locale}/admin/implementations`),
     },
-    {
-      name: t("admin.users"),
-      href: `/${locale}/admin/users`,
-      icon: Users,
-      current: pathname.startsWith(`/${locale}/admin/users`),
-    },
+
+    ...(user.role === "superadmin"
+      ? [
+          {
+            name: t("admin.users"),
+            href: `/${locale}/admin/users`,
+            icon: Users,
+            current: pathname.startsWith(`/${locale}/admin/users`),
+          },
+        ]
+      : []),
     {
       name: t("admin.feedback"),
       href: `/${locale}/admin/feedback`,
@@ -88,7 +101,7 @@ export default function AdminSidebar({ adminRole, locale }: AdminSidebarProps) {
               Civica Admin
             </h2>
             <Badge variant="secondary" className="mt-1">
-              {adminRole.role} • {adminRole.assignedRegion}
+              {adminRole?.jobDescription} • {adminRole?.assignedRegion}
             </Badge>
           </div>
         )}

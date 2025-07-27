@@ -19,6 +19,7 @@ import {
   proposalCategory,
   proposalScopes,
 } from "../constants";
+import { proposalScopeType } from "../types";
 
 export const proposals = pgTable("proposals", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -70,10 +71,11 @@ export const admins = pgTable("admins", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: text("user_id").references(() => user.id),
   assignedRegion: varchar("assigned_region", { length: 100 }),
+  assignedZoneOrSubcity: varchar("assigned_zone_or_subcity", { length: 100 }),
   assignedWoreda: varchar("assigned_woreda", { length: 100 }),
-  jobDescription: text("job_description"),
+  jobDescription: text("job_description").notNull(),
   contactInfo: text("contact_info"),
-  permissions: text("permissions").array(),
+  permissions: text("permissions").array().$type<proposalScopeType[]>(),
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   isDeleted: boolean("is_deleted").default(false),
