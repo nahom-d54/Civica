@@ -1,0 +1,446 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "yes": "Yes",
+    "no": "No",
+    "abstain": "Abstain",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "open": "Open",
+    "view": "View",
+    "download": "Download",
+    "upload": "Upload",
+    "required": "Required",
+    "optional": "Optional"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signUp": "Sign Up",
+    "faydaId": "Fayda ID",
+    "password": "Password",
+    "pin": "PIN",
+    "enterFaydaId": "Enter your Fayda ID",
+    "enterPin": "Enter your PIN",
+    "signInWithFayda": "Sign In with Fayda ID",
+    "authenticating": "Authenticating...",
+    "invalidCredentials": "Invalid Fayda ID or authentication failed. Please try again.",
+    "whyFayda": "Why Fayda ID?",
+    "faydaBenefits": {
+      "onePersonOneVote": "• Ensures 1 person = 1 vote",
+      "biometricVerification": "• Biometric-backed identity verification",
+      "preventsFakeAccounts": "• Prevents bots and fake accounts",
+      "buildsTrust": "• Builds trust in democratic processes"
+    },
+    "demoIds": "Demo IDs",
+    "demoPassword": "Demo: Leave blank or use \"demo123\""
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "vote": "Vote",
+    "feedback": "Feedback",
+    "transparency": "Transparency",
+    "admin": "Admin",
+    "profile": "Profile",
+    "settings": "Settings",
+    "help": "Help",
+    "complaints": "Complaints",
+    "suggestions": "Suggestions",
+    "reports": "Reports",
+    "inquiries": "Inquiries",
+    "logout": "Logout",
+    "home": "Home",
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact Us",
+    "language": "Language",
+    "languageOptions": {
+      "en": "English",
+      "am": "Amharic",
+      "om": "Oromo",
+      "ti": "Tigrinya"
+    },
+    "notifications": "Notifications",
+    "notificationsDesc": "View your notifications and alerts",
+    "notificationsEmpty": "No notifications yet",
+    "notificationsNew": "New Notifications",
+    "notificationsRead": "All notifications read",
+    "notificationsMarkAllRead": "Mark all as read",
+    "notificationsViewAll": "View All Notifications",
+    "notificationsSettings": "Notification Settings",
+    "notificationsSettingsDesc": "Manage your notification preferences",
+    "notificationsEmail": "Email Notifications",
+    "notificationsEmailDesc": "Receive notifications via email",
+    "notificationsPush": "Push Notifications",
+    "notificationsPushDesc": "Receive notifications on your device",
+    "notificationsSms": "SMS Notifications",
+    "notificationsSmsDesc": "Receive notifications via SMS",
+    "notificationsSave": "Save Notification Settings",
+    "notificationsSaveSuccess": "Notification settings saved successfully",
+    "notificationsSaveError": "Error saving notification settings. Please try again."
+  },
+  "dashboard": {
+    "title": "Civica",
+    "subtitle": "Digital Civic Engagement",
+    "welcome": "Welcome to our platform",
+    "stats": {
+      "activeProposals": "Active Proposals",
+      "yourVotes": "Your Votes",
+      "pendingVotes": "Pending Votes",
+      "feedbackSent": "Feedback Sent"
+    },
+    "userInfo": {
+      "role": "Role",
+      "region": "Region",
+      "woreda": "Woreda"
+    }
+  },
+  "voting": {
+    "title": "Active Proposals",
+    "subtitle": "Vote on community initiatives and policies",
+    "activeProposals": "Active Proposals",
+    "castYourVote": "Cast Your Vote",
+    "submitVote": "Submit Vote",
+    "submitting": "Submitting...",
+    "voteSubmitted": "Vote Submitted",
+    "voteSubmittedDesc": "Your vote has been recorded successfully.",
+    "alreadyVoted": "Already Voted",
+    "thankYou": "Thank you for participating in this democratic process!",
+    "votingEnded": "Voting has ended",
+    "daysLeft": "days left",
+    "votes": "votes",
+    "ends": "Ends",
+    "categories": {
+      "infrastructure": "Infrastructure",
+      "budget": "Budget",
+      "policy": "Policy",
+      "development": "Development",
+      "other": "Other"
+    },
+    "scopes": {
+      "kebele": "Kebele",
+      "woreda": "Woreda",
+      "regional": "Regional",
+      "national": "National"
+    },
+    "choices": {
+      "yes": "Yes - I support this proposal",
+      "no": "No - I oppose this proposal",
+      "abstain": "Abstain - I prefer not to vote"
+    },
+    "noActiveProposals": "No Active Proposals",
+    "noActiveProposalsDesc": "There are currently no active proposals to vote on. Check back later for new community initiatives.",
+    "currentResults": "Current Results",
+    "notEligible": "Not Eligible to Vote",
+    "notEligibleDesc": "This proposal is only for residents of {region}",
+    "yourVote": "Your Vote",
+    "anonymousMode": "Anonymous Mode",
+    "viewResults": "View Results"
+  },
+  "feedback": {
+    "title": "Community Feedback",
+    "subtitle": "Share your thoughts, report issues, or suggest improvements",
+    "submitFeedback": "Submit Feedback",
+    "description": "Your feedback helps improve our community services and governance",
+    "title_field": "Title",
+    "titlePlaceholder": "Brief description of your feedback",
+    "category": "Category",
+    "priority": "Priority",
+    "message": "Message",
+    "messagePlaceholder": "Provide detailed information about your feedback...",
+    "location": "Location",
+    "locationNote": "Your feedback will be routed to the appropriate local authorities",
+    "sendFeedback": "Send Feedback",
+    "sending": "Sending...",
+    "feedbackSubmitted": "Feedback Submitted",
+    "feedbackSubmittedDesc": "Your feedback has been submitted successfully. We'll review it soon.",
+    "recentFeedback": "Your Recent Feedback",
+    "trackStatus": "Track the status of your submitted feedback",
+    "noFeedback": "No feedback submitted yet",
+    "categories": {
+      "complaint": "Complaint",
+      "suggestion": "Suggestion",
+      "report": "Report",
+      "inquiry": "Inquiry"
+    },
+    "priorities": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "statuses": {
+      "pending": "Pending",
+      "reviewed": "Reviewed",
+      "in_progress": "In Progress",
+      "resolved": "Resolved",
+      "rejected": "Rejected"
+    }
+  },
+  "transparency": {
+    "title": "Transparency Dashboard",
+    "subtitle": "Real-time insights into voting results and implementation progress",
+    "votingResults": "Voting Results",
+    "participation": "Participation",
+    "implementation": "Implementation",
+    "proposalVotingResults": "Proposal Voting Results",
+    "voteDistribution": "Vote distribution across active proposals",
+    "proposalCategories": "Proposal Categories",
+    "categoryDistribution": "Distribution of proposals by category",
+    "totalVotesCast": "Total Votes Cast",
+    "activeVoters": "Active Voters",
+    "avgParticipation": "Avg. Participation",
+    "regionalParticipation": "Regional Participation Rates",
+    "participationByRegion": "Voter participation by region",
+    "progress": "Progress",
+    "budgetAllocated": "Budget Allocated",
+    "amountSpent": "Amount Spent",
+    "budgetUtilization": "Budget Utilization",
+    "started": "Started",
+    "expectedCompletion": "Expected completion",
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "planned": "Planned"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "subtitle": "Manage proposals, view analytics, and handle feedback",
+    "role": "Role",
+    "totalProposals": "Total Proposals",
+    "activeVotes": "Active Votes",
+    "pendingFeedback": "Pending Feedback",
+    "completedProjects": "Completed Projects",
+    "createProposal": "Create Proposal",
+    "manageFeedback": "Manage Feedback",
+    "analytics": "Analytics",
+    "createNewProposal": "Create New Proposal",
+    "createProposalDesc": "Create a new proposal for community voting",
+    "proposalTitle": "Proposal Title",
+    "proposalTitlePlaceholder": "Enter proposal title",
+    "description": "Description",
+    "descriptionPlaceholder": "Provide detailed description of the proposal...",
+    "category": "Category",
+    "scope": "Scope",
+    "targetRegion": "Target Region",
+    "targetRegionPlaceholder": "e.g., Addis Ababa, Bole",
+    "votingDuration": "Voting Duration (days)",
+    "creating": "Creating...",
+    "proposalCreated": "Proposal Created",
+    "proposalCreatedDesc": "New proposal has been created successfully.",
+    "manageCommunityFeedback": "Manage Community Feedback",
+    "reviewAndRespond": "Review and respond to citizen feedback",
+    "review": "Review",
+    "assign": "Assign",
+    "respond": "Respond",
+    "votingParticipation": "Voting Participation",
+    "participationRates": "Participation rates by region",
+    "feedbackCategories": "Feedback Categories",
+    "feedbackDistribution": "Distribution of feedback types",
+    "complaints": "Complaints",
+    "suggestions": "Suggestions",
+    "reports": "Reports",
+    "durations": {
+      "7": "7 days",
+      "14": "14 days",
+      "30": "30 days",
+      "45": "45 days",
+      "60": "60 days"
+    }
+  },
+  "complaint": {
+    "title": "File a Complaint",
+    "subtitle": "Report issues or grievances in your community",
+    "description": "Your complaint will be routed to the appropriate authorities for resolution",
+    "formTitle": "Complaint Form",
+    "formDescription": "Please provide detailed information about your complaint",
+    "titlePlaceholder": "Brief title of your complaint",
+    "category": "Category",
+    "messagePlaceholder": "Describe the issue in detail...",
+    "locationNote": "Your complaint will be routed to the appropriate local authorities",
+    "agreeToTerms": "I agree to the Terms of Service and Privacy Policy",
+    "termsDescription": "Your complaint will be kept confidential and used only for resolution purposes",
+    "submitComplaint": "Submit Complaint",
+    "success": {
+      "title": "Complaint Submitted Successfully!",
+      "message": "Your complaint has been submitted. We will review it and take action.",
+      "viewActivity": "View My Activity",
+      "backToDashboard": "Back to Dashboard"
+    },
+    "submitFeedback": "Submit Feedback",
+    "feedbackPlaceholder": "Share your feedback or suggestions about the complaint process...",
+    "feedbackSuccess": "Thank you for your feedback! We will use it to improve our complaint handling process.",
+    "feedbackError": "Error submitting feedback. Please try again later.",
+    "feedbackRequired": "Feedback is required to submit your complaint",
+    "feedbackOptional": "Feedback is optional but appreciated",
+    "feedbackCategories": {
+      "service": "Service Issue",
+      "safety": "Safety Concern",
+      "infrastructure": "Infrastructure Issue",
+      "environment": "Environmental Concern",
+      "other": "Other"
+    },
+    "location": "Location",
+    "sendFeedback": "Send Feedback"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "minLength": "Must be at least {min} characters",
+    "maxLength": "Must be no more than {max} characters",
+    "invalidFaydaId": "Invalid Fayda ID format",
+    "networkError": "Network error. Please try again.",
+    "serverError": "Server error. Please try again later.",
+    "unauthorized": "You are not authorized",
+    "forbidden": "You don't have permission to perform this action"
+  },
+  "success": {
+    "saved": "Successfully saved",
+    "updated": "Successfully updated",
+    "deleted": "Successfully deleted",
+    "sent": "Successfully sent"
+  },
+  "landing": {
+    "hero": {
+      "badge": "For Ethiopian Citizens",
+      "title": "Digital Voting & Community Feedback Platform",
+      "subtitle": "Participate in community decisions and make your voice heard using secure Fayda ID verification.",
+      "cta": "Sign In with Fayda ID",
+      "learnMore": "Learn More"
+    },
+    "features": {
+      "title": "Why Civica?",
+      "subtitle": "Features designed to strengthen democratic participation",
+      "voting": {
+        "title": "Secure Voting",
+        "description": "Vote on community proposals in a secure and transparent way"
+      },
+      "feedback": {
+        "title": "Community Feedback",
+        "description": "Share your ideas and make a difference in your community"
+      },
+      "transparency": {
+        "title": "Transparency",
+        "description": "Track voting results and implementation progress in real-time"
+      },
+      "security": {
+        "title": "Fayda Security",
+        "description": "Biometric-backed identity verification for secure participation"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Participate in the democratic process in four simple steps",
+      "step1": {
+        "title": "Sign In with Fayda ID",
+        "description": "Securely log in using your verified Fayda ID"
+      },
+      "step2": {
+        "title": "Browse Proposals",
+        "description": "View active proposals and initiatives in your area"
+      },
+      "step3": {
+        "title": "Cast Your Vote",
+        "description": "Share your opinion on community decisions"
+      },
+      "step4": {
+        "title": "Track Progress",
+        "description": "Monitor voting results and implementation progress"
+      }
+    },
+    "stats": {
+      "citizens": "Registered Citizens",
+      "proposals": "Proposals Created",
+      "participation": "Participation Rate"
+    },
+    "cta": {
+      "title": "Join the Democratic Process Today",
+      "subtitle": "Your voice matters. Join us in shaping the future of your community.",
+      "button": "Get Started Now"
+    },
+    "footer": {
+      "description": "Secure digital voting and community feedback platform designed for Ethiopian citizens.",
+      "links": "Links",
+      "about": "About Us",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "support": "Support",
+      "contact": "Contact Us",
+      "rights": "All rights reserved."
+    }
+  },
+  "results": {
+    "title": "Voting Results",
+    "overview": "Overview",
+    "regional": "Regional",
+    "feedback": "Feedback",
+    "totalVotes": "Total Votes",
+    "voteDistribution": "Vote Distribution",
+    "detailedBreakdown": "Detailed Breakdown",
+    "totalParticipation": "Total Participation",
+    "regionalBreakdown": "Regional Breakdown",
+    "regionalBreakdownDesc": "Vote distribution by region",
+    "total": "Total",
+    "relatedFeedback": "Related Feedback",
+    "relatedFeedbackDesc": "Feedback submitted about this proposal",
+    "anonymous": "Anonymous",
+    "noFeedback": "No feedback available",
+    "backToDashboard": "Back to Dashboard",
+    "provideFeedback": "Provide Feedback"
+  },
+  "activity": {
+    "title": "My Activity",
+    "subtitle": "View your voting and feedback history",
+    "welcome": "Welcome {name}",
+    "summary": "You have cast {votes} votes and submitted {feedback} feedback",
+    "votingHistory": "Voting History",
+    "feedbackHistory": "Feedback History",
+    "votedOn": "Voted on",
+    "submittedOn": "Submitted on",
+    "viewResults": "View Results",
+    "finalResults": "Final Results",
+    "governmentResponse": "Government Response",
+    "sampleResponse": "We have received your feedback and will take action.",
+    "noVotes": "No votes cast yet",
+    "noVotesDesc": "Start participating by voting on active proposals",
+    "startVoting": "Start Voting",
+    "noFeedback": "No feedback submitted yet",
+    "noFeedbackDesc": "Start sharing your thoughts with community feedback",
+    "startFeedback": "Start Feedback"
+  },
+  "feedbackNew": {
+    "title": "New Feedback",
+    "subtitle": "Share your thoughts and opinions",
+    "relatedProposal": "Related Proposal",
+    "relatedProposalDesc": "This feedback is related to the following proposal",
+    "formTitle": "Share Your Feedback",
+    "formDescription": "Your feedback helps improve our community services and governance",
+    "titlePlaceholder": "Write a clear and concise title for your feedback",
+    "titleDescription": "A brief title that captures the main point of your feedback",
+    "selectCategory": "Select a category",
+    "messagePlaceholder": "Describe your feedback, suggestion, or complaint in detail...",
+    "messageDescription": "Please provide as much detail as possible",
+    "locationNote": "Your feedback will be routed to the appropriate local authorities",
+    "agreeToTerms": "I agree to the Terms of Service and Privacy Policy",
+    "termsDescription": "Your feedback will be kept confidential and used only for improvement",
+    "submitFeedback": "Submit Feedback",
+    "success": {
+      "title": "Your Voice Has Been Heard!",
+      "message": "Your feedback has been submitted successfully. We'll review it soon.",
+      "viewActivity": "View My Activity",
+      "backToDashboard": "Back to Dashboard"
+    }
+  }
+}

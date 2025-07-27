@@ -1,0 +1,376 @@
+{
+  "common": {
+    "loading": "እየጫነ ነው...",
+    "submit": "ላክ",
+    "cancel": "ሰርዝ",
+    "save": "አስቀምጥ",
+    "edit": "አርም",
+    "delete": "ሰርዝ",
+    "yes": "አዎ",
+    "no": "አይ",
+    "abstain": "ተቆጠብ",
+    "search": "ፈልግ",
+    "filter": "ማጣሪያ",
+    "sort": "ደርድር",
+    "back": "ተመለስ",
+    "next": "ቀጣይ",
+    "previous": "ቀዳሚ",
+    "close": "ዝጋ",
+    "open": "ክፈት",
+    "view": "ተመልከት",
+    "download": "አውርድ",
+    "upload": "አስገባ",
+    "required": "ያስፈልጋል",
+    "optional": "አማራጭ"
+  },
+  "auth": {
+    "signIn": "ግባ",
+    "signOut": "ውጣ",
+    "signUp": "ተመዝገብ",
+    "faydaId": "ፋይዳ መታወቂያ",
+    "password": "የይለፍ ቃል",
+    "pin": "ፒን",
+    "enterFaydaId": "ፋይዳ መታወቂያዎን ያስገቡ",
+    "enterPin": "ፒንዎን ያስገቡ",
+    "signInWithFayda": "በፋይዳ መታወቂያ ግባ",
+    "authenticating": "እያረጋገጠ ነው...",
+    "invalidCredentials": "ልክ ያልሆነ ፋይዳ መታወቂያ ወይም የማረጋገጫ ስህተት። እባክዎ እንደገና ይሞክሩ።",
+    "whyFayda": "ለምን ፋይዳ መታወቂያ?",
+    "faydaBenefits": {
+      "onePersonOneVote": "• አንድ ሰው = አንድ ድምጽ ያረጋግጣል",
+      "biometricVerification": "• በባዮሜትሪክ የተደገፈ የማንነት ማረጋገጫ",
+      "preventsFakeAccounts": "• ሮቦቶችን እና የውሸት መለያዎችን ይከላከላል",
+      "buildsTrust": "• በዲሞክራሲያዊ ሂደቶች ላይ እምነት ይገነባል"
+    },
+    "demoIds": "የሙከራ መታወቂያዎች",
+    "demoPassword": "የሙከራ: ባዶ ይተዉ ወይም \"demo123\" ይጠቀሙ"
+  },
+  "navigation": {
+    "dashboard": "ዳሽቦርድ",
+    "vote": "ድምጽ",
+    "feedback": "አስተያየት",
+    "transparency": "ግልጽነት",
+    "admin": "አስተዳዳሪ",
+    "profile": "መገለጫ",
+    "settings": "ቅንብሮች",
+    "help": "እርዳታ"
+  },
+  "dashboard": {
+    "title": "ሲቪካ",
+    "subtitle": "ዲጂታል የዜጎች ተሳትፎ",
+    "welcome": "እንኳን ወደ መድረካችን በደህና መጡ",
+    "stats": {
+      "activeProposals": "ንቁ ሀሳቦች",
+      "yourVotes": "የእርስዎ ድምጾች",
+      "pendingVotes": "በመጠባበቅ ላይ ያሉ ድምጾች",
+      "feedbackSent": "የተላከ አስተያየት"
+    },
+    "userInfo": {
+      "role": "ሚና",
+      "region": "ክልል",
+      "woreda": "ወረዳ"
+    }
+  },
+  "voting": {
+    "title": "ንቁ ሀሳቦች",
+    "subtitle": "በማህበረሰብ ተነሳሽነቶች እና ፖሊሲዎች ላይ ድምጽ ይስጡ",
+    "activeProposals": "ንቁ ሀሳቦች",
+    "castYourVote": "ድምጽዎን ይስጡ",
+    "submitVote": "ድምጽ ላክ",
+    "submitting": "እየላከ ነው...",
+    "voteSubmitted": "ድምጽ ተላከ",
+    "voteSubmittedDesc": "ድምጽዎ በተሳካ ሁኔታ ተመዝግቧል።",
+    "alreadyVoted": "ድምጽ ሰጥተዋል",
+    "thankYou": "በዚህ ዲሞክራሲያዊ ሂደት ለተሳተፉ እናመሰግናለን!",
+    "votingEnded": "ድምጽ መስጠት ተጠናቋል",
+    "daysLeft": "ቀናት ቀሩ",
+    "votes": "ድምጾች",
+    "ends": "ያበቃል",
+    "categories": {
+      "infrastructure": "መሰረተ ልማት",
+      "budget": "በጀት",
+      "policy": "ፖሊሲ",
+      "development": "ልማት",
+      "other": "ሌላ"
+    },
+    "scopes": {
+      "kebele": "ቀበሌ",
+      "woreda": "ወረዳ",
+      "regional": "ክልላዊ",
+      "national": "ብሔራዊ"
+    },
+    "choices": {
+      "yes": "አዎ - ይህንን ሀሳብ እደግፋለሁ",
+      "no": "አይ - ይህንን ሀሳብ እቃወማለሁ",
+      "abstain": "ተቆጠብ - ድምጽ መስጠት አልፈልግም"
+    },
+    "noActiveProposals": "ንቁ ሀሳቦች የሉም",
+    "noActiveProposalsDesc": "በአሁኑ ጊዜ ድምጽ ለመስጠት ንቁ ሀሳቦች የሉም። ለአዲስ የማህበረሰብ ተነሳሽነቶች በኋላ ይመለሱ።",
+    "currentResults": "የአሁኑ ውጤቶች",
+    "notEligible": "ለድምጽ መስጠት ብቁ አይደሉም",
+    "notEligibleDesc": "ይህ ሀሳብ ለ{region} ነዋሪዎች ብቻ ነው",
+    "yourVote": "የእርስዎ ድምጽ",
+    "anonymousMode": "ማንነት ሳይታወቅ",
+    "viewResults": "ውጤቶች ይመልከቱ"
+  },
+  "feedback": {
+    "title": "የማህበረሰብ አስተያየት",
+    "subtitle": "ሀሳብዎን ያካፍሉ፣ ችግሮችን ያሳውቁ ወይም መሻሻሎችን ይጠቁሙ",
+    "submitFeedback": "አስተያየት ላክ",
+    "description": "የእርስዎ አስተያየት የማህበረሰባችንን አገልግሎቶች እና አስተዳደር ለማሻሻል ይረዳል",
+    "title_field": "ርዕስ",
+    "titlePlaceholder": "የአስተያየትዎ አጭር መግለጫ",
+    "category": "ምድብ",
+    "priority": "ቅድሚያ",
+    "message": "መልእክት",
+    "messagePlaceholder": "ስለ አስተያየትዎ ዝርዝር መረጃ ይስጡ...",
+    "location": "አካባቢ",
+    "locationNote": "አስተያየትዎ ወደ ተገቢው የአካባቢ ባለስልጣናት ይላካል",
+    "sendFeedback": "አስተያየት ላክ",
+    "sending": "እየላከ ነው...",
+    "feedbackSubmitted": "አስተያየት ተላከ",
+    "feedbackSubmittedDesc": "አስተያየትዎ በተሳካ ሁኔታ ተላክቷል። በቅርቡ እንገመግመዋለን።",
+    "recentFeedback": "የቅርብ ጊዜ አስተያየትዎ",
+    "trackStatus": "የተላከ አስተያየትዎን ሁኔታ ይከታተሉ",
+    "noFeedback": "ገና አስተያየት አልተላከም",
+    "categories": {
+      "complaint": "ቅሬታ",
+      "suggestion": "ሀሳብ",
+      "report": "ሪፖርት",
+      "inquiry": "ጥያቄ"
+    },
+    "priorities": {
+      "low": "ዝቅተኛ",
+      "medium": "መካከለኛ",
+      "high": "ከፍተኛ",
+      "urgent": "አስቸኳይ"
+    },
+    "statuses": {
+      "pending": "በመጠባበቅ ላይ",
+      "reviewed": "ተገምግሟል",
+      "in_progress": "በሂደት ላይ",
+      "resolved": "ተፈትቷል",
+      "rejected": "ተቀባይነት አላገኘም"
+    }
+  },
+  "transparency": {
+    "title": "የግልጽነት ዳሽቦርድ",
+    "subtitle": "ስለ ድምጽ ውጤቶች እና የትግበራ እድገት የእውነተኛ ጊዜ ግንዛቤዎች",
+    "votingResults": "የድምጽ ውጤቶች",
+    "participation": "ተሳትፎ",
+    "implementation": "ትግበራ",
+    "proposalVotingResults": "የሀሳብ ድምጽ ውጤቶች",
+    "voteDistribution": "በንቁ ሀሳቦች ላይ የድምጽ ስርጭት",
+    "proposalCategories": "የሀሳብ ምድቦች",
+    "categoryDistribution": "በምድብ የሀሳቦች ስርጭት",
+    "totalVotesCast": "ጠቅላላ የተሰጡ ድምጾች",
+    "activeVoters": "ንቁ ድምጽ ሰጪዎች",
+    "avgParticipation": "አማካይ ተሳትፎ",
+    "regionalParticipation": "የክልላዊ ተሳትፎ መጠኖች",
+    "participationByRegion": "በክልል የድምጽ ሰጪዎች ተሳትፎ",
+    "progress": "እድገት",
+    "budgetAllocated": "የተመደበ በጀት",
+    "amountSpent": "የተወጣ መጠን",
+    "budgetUtilization": "የበጀት አጠቃቀም",
+    "started": "ተጀመረ",
+    "expectedCompletion": "የሚጠበቅ ማጠናቀቂያ",
+    "statuses": {
+      "completed": "ተጠናቋል",
+      "in_progress": "በሂደት ላይ",
+      "planned": "ታቅዷል"
+    }
+  },
+  "admin": {
+    "title": "የአስተዳዳሪ ፓነል",
+    "subtitle": "ሀሳቦችን ያስተዳድሩ፣ ትንታኔዎችን ይመልከቱ እና አስተያየቶችን ይያዙ",
+    "role": "ሚና",
+    "totalProposals": "ጠቅላላ ሀሳቦች",
+    "activeVotes": "ንቁ ድምጾች",
+    "pendingFeedback": "በመጠባበቅ ላይ ያለ አስተያየት",
+    "completedProjects": "የተጠናቀቁ ፕሮጀክቶች",
+    "createProposal": "ሀሳብ ፍጠር",
+    "manageFeedback": "አስተያየት አስተዳድር",
+    "analytics": "ትንታኔዎች",
+    "createNewProposal": "አዲስ ሀሳብ ፍጠር",
+    "createProposalDesc": "ለማህበረሰብ ድምጽ አዲስ ሀሳብ ፍጠር",
+    "proposalTitle": "የሀሳብ ርዕስ",
+    "proposalTitlePlaceholder": "የሀሳብ ርዕስ ያስገቡ",
+    "description": "መግለጫ",
+    "descriptionPlaceholder": "የሀሳቡን ዝርዝር መግለጫ ይስጡ...",
+    "category": "ምድብ",
+    "scope": "ወሰን",
+    "targetRegion": "ዒላማ ክልል",
+    "targetRegionPlaceholder": "ለምሳሌ፣ አዲስ አበባ፣ ቦሌ",
+    "votingDuration": "የድምጽ መስጠት ጊዜ (ቀናት)",
+    "creating": "እየፈጠረ ነው...",
+    "proposalCreated": "ሀሳብ ተፈጠረ",
+    "proposalCreatedDesc": "አዲስ ሀሳብ በተሳካ ሁኔታ ተፈጥሯል።",
+    "manageCommunityFeedback": "የማህበረሰብ አስተያየት አስተዳድር",
+    "reviewAndRespond": "የዜጎች አስተያየት ይገምግሙ እና ምላሽ ይስጡ",
+    "review": "ግምገማ",
+    "assign": "መድብ",
+    "respond": "ምላሽ ስጥ",
+    "votingParticipation": "የድምጽ ተሳትፎ",
+    "participationRates": "በክልል የተሳትፎ መጠኖች",
+    "feedbackCategories": "የአስተያየት ምድቦች",
+    "feedbackDistribution": "የአስተያየት አይነቶች ስርጭት",
+    "complaints": "ቅሬታዎች",
+    "suggestions": "ሀሳቦች",
+    "reports": "ሪፖርቶች",
+    "durations": {
+      "7": "7 ቀናት",
+      "14": "14 ቀናት",
+      "30": "30 ቀናት",
+      "45": "45 ቀናት",
+      "60": "60 ቀናት"
+    }
+  },
+  "errors": {
+    "required": "ይህ መስክ ያስፈልጋል",
+    "invalidEmail": "ልክ ያልሆነ ኢሜይል አድራሻ",
+    "minLength": "ቢያንስ {min} ቁምፊዎች ያስፈልጋሉ",
+    "maxLength": "ከ{max} ቁምፊዎች በላይ መሆን አይችልም",
+    "invalidFaydaId": "ልክ ያልሆነ ፋይዳ መታወቂያ ቅርጸት",
+    "networkError": "የኔትወርክ ስህተት። እባክዎ እንደገና ይሞክሩ።",
+    "serverError": "የአገልጋይ ስህተት። እባክዎ በኋላ ይሞክሩ።",
+    "unauthorized": "ፍቃድ የለዎትም",
+    "forbidden": "ይህንን ድርጊት ለመፈጸም ፍቃድ የለዎትም"
+  },
+  "success": {
+    "saved": "በተሳካ ሁኔታ ተቀምጧል",
+    "updated": "በተሳካ ሁኔታ ተዘምኗል",
+    "deleted": "በተሳካ ሁኔታ ተሰርዟል",
+    "sent": "በተሳካ ሁኔታ ተላክቷል"
+  },
+  "landing": {
+    "hero": {
+      "badge": "ለኢትዮጵያ ዜጎች",
+      "title": "የዲጂታል ድምጽ እና የማህበረሰብ አስተያየት መድረክ",
+      "subtitle": "በፋይዳ መታወቂያ ማረጋገጫ በመጠቀም በማህበረሰብ ውሳኔዎች ላይ ተሳተፉ እና ድምጽዎን ይስሙ።",
+      "cta": "በፋይዳ መታወቂያ ግቡ",
+      "learnMore": "የበለጠ ይወቁ"
+    },
+    "features": {
+      "title": "ለምን ሲቪካ?",
+      "subtitle": "ዲሞክራሲያዊ ተሳትፎን ለማጠናከር የተነደፉ ባህሪያት",
+      "voting": {
+        "title": "ደህንነቱ የተጠበቀ ድምጽ",
+        "description": "በማህበረሰብ ሀሳቦች ላይ በአስተማማኝ እና ግልጽ መንገድ ድምጽ ይስጡ"
+      },
+      "feedback": {
+        "title": "የማህበረሰብ አስተያየት",
+        "description": "ሀሳቦችዎን ያካፍሉ እና በአካባቢዎ ላይ ለውጥ ያመጡ"
+      },
+      "transparency": {
+        "title": "ግልጽነት",
+        "description": "የድምጽ ውጤቶችን እና የትግበራ እድገትን በእውነተኛ ጊዜ ይከታተሉ"
+      },
+      "security": {
+        "title": "ፋይዳ ደህንነት",
+        "description": "በባዮሜትሪክ የተደገፈ የማንነት ማረጋገጫ ለአስተማማኝ ተሳትፎ"
+      }
+    },
+    "howItWorks": {
+      "title": "እንዴት ይሰራል",
+      "subtitle": "በአራት ቀላል ደረጃዎች ውስጥ የዲሞክራሲያዊ ሂደት ተሳታፊ ይሁኑ",
+      "step1": {
+        "title": "በፋይዳ መታወቂያ ይግቡ",
+        "description": "የተረጋገጠ የፋይዳ መታወቂያዎን በመጠቀም በአስተማማኝ ሁኔታ ይግቡ"
+      },
+      "step2": {
+        "title": "ሀሳቦችን ይመልከቱ",
+        "description": "በአካባቢዎ ላሉ ንቁ ሀሳቦች እና ተነሳሽነቶች ይመልከቱ"
+      },
+      "step3": {
+        "title": "ድምጽዎን ይስጡ",
+        "description": "በማህበረሰብ ውሳኔዎች ላይ የእርስዎን አስተያየት ያካፍሉ"
+      },
+      "step4": {
+        "title": "እድገትን ይከታተሉ",
+        "description": "የድምጽ ውጤቶችን እና የትግበራ እድገትን ይመልከቱ"
+      }
+    },
+    "stats": {
+      "citizens": "የተመዘገቡ ዜጎች",
+      "proposals": "የተፈጠሩ ሀሳቦች",
+      "participation": "የተሳትፎ መጠን"
+    },
+    "cta": {
+      "title": "ዛሬ የዲሞክራሲያዊ ሂደት ተሳታፊ ይሁኑ",
+      "subtitle": "ድምጽዎ ይቆጠራል። የማህበረሰብዎ የወደፊት ዕጣ ፈንታ ለመቅረጽ ይቀላቀሉን።",
+      "button": "አሁን ይጀምሩ"
+    },
+    "footer": {
+      "description": "ለኢትዮጵያ ዜጎች የተነደፈ ደህንነቱ የተጠበቀ ዲጂታል ድምጽ እና የማህበረሰብ አስተያየት መድረክ።",
+      "links": "አገናኞች",
+      "about": "ስለ እኛ",
+      "privacy": "የግላዊነት ፖሊሲ",
+      "terms": "የአገልግሎት ውሎች",
+      "support": "ድጋፍ",
+      "contact": "ያግኙን",
+      "rights": "ሁሉም መብቶች የተጠበቁ ናቸው።"
+    }
+  },
+  "results": {
+    "title": "የድምጽ ውጤቶች",
+    "overview": "አጠቃላይ እይታ",
+    "regional": "ክልላዊ",
+    "feedback": "አስተያየት",
+    "totalVotes": "ጠቅላላ ድምጾች",
+    "voteDistribution": "የድምጽ ስርጭት",
+    "detailedBreakdown": "ዝርዝር ትንተና",
+    "totalParticipation": "ጠቅላላ ተሳትፎ",
+    "regionalBreakdown": "ክልላዊ ትንተና",
+    "regionalBreakdownDesc": "በክልል የድምጽ ስርጭት",
+    "total": "ጠቅላላ",
+    "relatedFeedback": "ተዛማጅ አስተያየቶች",
+    "relatedFeedbackDesc": "ስለዚህ ሀሳብ የተሰጡ አስተያየቶች",
+    "anonymous": "ማንነት ያልታወቀ",
+    "noFeedback": "ምንም አስተያየት የለም",
+    "backToDashboard": "ወደ ዳሽቦርድ ተመለስ",
+    "provideFeedback": "አስተያየት ስጥ"
+  },
+  "activity": {
+    "title": "የእኔ እንቅስቃሴ",
+    "subtitle": "የድምጽ እና የአስተያየት ታሪክዎን ይመልከቱ",
+    "welcome": "እንኳን ደህና መጡ {name}",
+    "summary": "እስካሁን {votes} ድምጾች እና {feedback} አስተያየቶች ሰጥተዋል",
+    "votingHistory": "የድምጽ ታሪክ",
+    "feedbackHistory": "የአስተያየት ታሪክ",
+    "votedOn": "ድምጽ የተሰጠበት",
+    "submittedOn": "የተላከበት",
+    "viewResults": "ውጤቶች ይመልከቱ",
+    "finalResults": "የመጨረሻ ውጤቶች",
+    "governmentResponse": "የመንግስት ምላሽ",
+    "sampleResponse": "አስተያየትዎ ተቀብለን እርምጃ እንወስዳለን።",
+    "noVotes": "ገና ድምጽ አልሰጡም",
+    "noVotesDesc": "በንቁ ሀሳቦች ላይ ድምጽ መስጠት ይጀምሩ",
+    "startVoting": "ድምጽ መስጠት ይጀምሩ",
+    "noFeedback": "ገና አስተያየት አልሰጡም",
+    "noFeedbackDesc": "የማህበረሰብ አስተያየት መስጠት ይጀምሩ",
+    "startFeedback": "አስተያየት መስጠት ይጀምሩ"
+  },
+  "feedbackNew": {
+    "title": "አዲስ አስተያየት",
+    "subtitle": "የእርስዎን ሀሳብ እና አስተያየት ያካፍሉ",
+    "relatedProposal": "ተዛማጅ ሀሳብ",
+    "relatedProposalDesc": "ይህ አስተያየት ከሚከተለው ሀሳብ ጋር ይዛመዳል",
+    "formTitle": "አስተያየትዎን ያካፍሉ",
+    "formDescription": "የእርስዎ አስተያየት የማህበረሰባችንን አገልግሎቶች እና አስተዳደር ለማሻሻል ይረዳል",
+    "titlePlaceholder": "የአስተያየትዎን አጭር እና ግልጽ ርዕስ ይጻፉ",
+    "titleDescription": "የአስተያየትዎን ዋና ነጥብ የሚገልጽ አጭር ርዕስ",
+    "selectCategory": "ምድብ ይምረጡ",
+    "messagePlaceholder": "የእርስዎን አስተያየት፣ ሀሳብ ወይም ቅሬታ በዝርዝር ይግለጹ...",
+    "messageDescription": "እባክዎ በተቻለ መጠን ዝርዝር መረጃ ይስጡ",
+    "locationNote": "አስተያየትዎ ወደ ተገቢው የአካባቢ ባለስልጣናት ይላካል",
+    "agreeToTerms": "የአገልግሎት ውሎችን እና የግላዊነት ፖሊሲን እስማማለሁ",
+    "termsDescription": "አስተያየትዎ በሚስጥር ይያዛል እና ለመሻሻል ብቻ ይጠቅማል",
+    "submitFeedback": "አስተያየት ላክ",
+    "success": {
+      "title": "ድምጽዎ ተሰምቷል!",
+      "message": "አስተያየትዎ በተሳካ ሁኔታ ተላክቷል። በቅርቡ እንገመግመዋለን።",
+      "viewActivity": "እንቅስቃሴዬን ይመልከቱ",
+      "backToDashboard": "ወደ ዳሽቦርድ ተመለስ"
+    }
+  }
+}

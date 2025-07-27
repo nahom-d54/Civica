@@ -1,0 +1,74 @@
+{
+  "common": {
+    "loading": "Fe'aa jira...",
+    "submit": "Galchi",
+    "cancel": "Dhiisi",
+    "save": "Olkaa'i",
+    "edit": "Fooyyessi",
+    "delete": "Balleessi",
+    "yes": "Eeyyee",
+    "no": "Lakki",
+    "abstain": "Of eeggadhu",
+    "search": "Barbaadi",
+    "filter": "Calaluu",
+    "sort": "Tartiibii",
+    "back": "Duubatti",
+    "next": "Itti aanuu",
+    "previous": "Duraa",
+    "close": "Cufii",
+    "open": "Bani",
+    "view": "Ilaali",
+    "download": "Buufadhu",
+    "upload": "Ol kaa'i",
+    "required": "Barbaachisaa",
+    "optional": "Filannoo"
+  },
+  "auth": {
+    "signIn": "Seeni",
+    "signOut": "Ba'i",
+    "signUp": "Galmaa'i",
+    "faydaId": "Eenyummaa Fayda",
+    "password": "Jecha icciitii",
+    "pin": "PIN",
+    "enterFaydaId": "Eenyummaa Fayda kee galchi",
+    "enterPin": "PIN kee galchi",
+    "signInWithFayda": "Eenyummaa Faydaan seeni",
+    "authenticating": "Mirkaneessaa jira...",
+    "invalidCredentials": "Eenyummaa Fayda sirrii hin taane ykn mirkaneessi dhabame. Irra deebi'ii yaali.",
+    "whyFayda": "Maaliif Eenyummaa Fayda?",
+    "faydaBenefits": {
+      "onePersonOneVote": "• Nama tokko = sagalee tokko mirkaneessa",
+      "biometricVerification": "• Mirkaneessii eenyummaa baayoomeetrikiin deeggare",
+      "preventsFakeAccounts": "• Robootii fi herregaa sobaa dhowwa",
+      "buildsTrust": "• Adeemsa dimokiraasii keessatti amantaa ijaaraa"
+    },
+    "demoIds": "Eenyummaa yaadannoo",
+    "demoPassword": "Yaadannoo: Duwwaa dhiisi ykn \"demo123\" fayyadami"
+  },
+  "navigation": {
+    "dashboard": "Gabatee",
+    "vote": "Sagalee",
+    "feedback": "Yaada",
+    "transparency": "Iftoomina",
+    "admin": "Bulchaa",
+    "profile": "Seenaa",
+    "settings": "Qindaa'ina",
+    "help": "Gargaarsa"
+  },
+  "dashboard": {
+    "title": "Siivikaa",
+    "subtitle": "Hirmaannaa Lammii Dijitaalaa",
+    "welcome": "Gara waltajjii keenyaatti baga nagaan dhuftan",
+    "stats": {
+      "activeProposals": "Yaada-karoora Sochii",
+      "yourVotes": "Sagalee Kee",
+      "pendingVotes": "Sagalee Eegaa Jiru",
+      "feedbackSent": "Yaada Ergame"
+    },
+    "userInfo": {
+      "role": "Gahee",
+      "region": "Naannoo",
+      "woreda": "Aanaa"
+    }
+  }
+}

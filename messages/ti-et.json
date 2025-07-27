@@ -1,0 +1,48 @@
+{
+  "common": {
+    "loading": "ይጽዕን ኣሎ...",
+    "submit": "ስደድ",
+    "cancel": "ሰርዝ",
+    "save": "ዓቅብ",
+    "edit": "ኣርም",
+    "delete": "ሰርዝ",
+    "yes": "እወ",
+    "no": "ኣይፋል",
+    "abstain": "ተቆጠብ",
+    "search": "ደሊ",
+    "filter": "ፍልተር",
+    "sort": "ደርድር",
+    "back": "ተመለስ",
+    "next": "ቀጻሊ",
+    "previous": "ቀዳማይ",
+    "close": "ዓጽዎ",
+    "open": "ክፈት",
+    "view": "ርአ",
+    "download": "ኣውርድ",
+    "upload": "ኣእቱ",
+    "required": "የድሊ",
+    "optional": "ኣማራጺ"
+  },
+  "auth": {
+    "signIn": "እቶ",
+    "signOut": "ወጽእ",
+    "signUp": "ተመዝገብ",
+    "faydaId": "መንነት ፋይዳ",
+    "password": "ቃል ምሕላፍ",
+    "pin": "ፒን",
+    "enterFaydaId": "መንነት ፋይዳኻ ኣእቱ",
+    "enterPin": "ፒንካ ኣእቱ",
+    "signInWithFayda": "ብመንነት ፋይዳ እቶ",
+    "authenticating": "የረጋግጽ ኣሎ...",
+    "invalidCredentials": "ዘይቅኑዕ መንነት ፋይዳ ወይ ምርግጋጽ ተሰኺሙ። እባ ደጊምካ ፈትን።",
+    "whyFayda": "ስለምንታይ መንነት ፋይዳ?",
+    "faydaBenefits": {
+      "onePersonOneVote": "• ሓደ ሰብ = ሓደ ድምጺ የረጋግጽ",
+      "biometricVerification": "• ብባዮሜትሪክ ዝተደገፈ መንነት ምርግጋጽ",
+      "preventsFakeAccounts": "• ሮቦታትን ሓሶት ኣካውንትን የከላኸል",
+      "buildsTrust": "• ኣብ ደሞክራሲያዊ ሂደት እምነት የሃንጽ"
+    },
+    "demoIds": "ናይ ፈተና መንነታት",
+    "demoPassword": "ፈተና: ባዶ ገድፍ ወይ \"demo123\" ተጠቐም"
+  }
+}
