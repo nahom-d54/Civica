@@ -5,6 +5,7 @@ import { proposals, votes, feedback, user, admins } from "@/lib/db/schema";
 import { eq, count, and, gte } from "drizzle-orm";
 import AdminDashboardClient from "./admin-dashboard-client";
 import { redirect } from "next/navigation";
+import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 
 export default async function AdminDashboardPage({
   params,
@@ -73,11 +74,13 @@ export default async function AdminDashboardPage({
   };
 
   return (
-    <AdminDashboardClient
-      stats={stats}
-      recentProposals={recentProposals}
-      recentFeedback={recentFeedback}
-      adminRole={adminRole}
-    />
+    <ReactQueryProvider>
+      <AdminDashboardClient
+        stats={stats}
+        recentProposals={recentProposals}
+        recentFeedback={recentFeedback}
+        adminRole={adminRole}
+      />
+    </ReactQueryProvider>
   );
 }

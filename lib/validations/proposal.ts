@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { proposalCategory, proposalScopes } from "../constants";
 
 export const proposalSchema = z.object({
   title: z
@@ -9,22 +10,13 @@ export const proposalSchema = z.object({
   description: z
     .string()
     .min(1, "errors.required")
-    .min(50, "errors.minLength")
-    .max(2000, "errors.maxLength"),
-  category: z.enum([
-    "infrastructure",
-    "budget",
-    "policy",
-    "development",
-    "other",
-  ]),
-  regionScope: z.enum(["kebele", "woreda", "regional", "national"]),
-  targetRegion: z
-    .string()
-    .min(1, "errors.required")
-    .min(2, "errors.minLength")
-    .max(100, "errors.maxLength"),
-  duration: z.string().min(1, "errors.required"),
+    .min(10, "errors.minLength")
+    .max(255, "errors.maxLength"),
+  category: z.enum(proposalCategory),
+  scope: z.enum(proposalScopes),
+  target: z.string().min(1, "Target is required"),
+  startsAt: z.string().min(1, "Start date is required"),
+  endsAt: z.string().min(1, "End date is required"),
 });
 
-export type ProposalFormData = z.infer<typeof proposalSchema>;
+export type proposalSchemaType = z.infer<typeof proposalSchema>;

@@ -30,27 +30,15 @@ import {
 } from "./ui/select";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import z from "zod";
-import { proposalScopeType, proposalSelect } from "@/lib/types";
 import { proposalCategory, proposalScopes } from "@/lib/constants";
-
-const proposalSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string().min(1, "Description is required"),
-  category: z.string().min(1, "Category is required"),
-  scope: z.enum(proposalScopes),
-  startsAt: z.string().min(1, "Start date is required"),
-  endsAt: z.string().min(1, "End date is required"),
-});
-
-type proposalSchemaType = z.infer<typeof proposalSchema>;
+import { useCreateProposal, useUpdateProposal } from "@/lib/query/mutations";
+import { proposalScopeType, proposalSelect } from "@/lib/types";
+import { proposalSchema, proposalSchemaType } from "@/lib/validations/proposal";
 
 interface ProposalDialogProps {
   proposal?: proposalSelect;
-  onClose: () => void;
   isCreateDialogOpen: boolean;
   setIsCreateDialogOpen: (open: boolean) => void;
-  handleCreateProposal: (data: proposalSchemaType) => void;
   create?: boolean;
   adminScope: proposalScopeType[];
 }
@@ -59,7 +47,6 @@ export default function ProposalDialog({
   proposal,
   isCreateDialogOpen,
   setIsCreateDialogOpen,
-  handleCreateProposal,
   create = false,
   adminScope,
 }: ProposalDialogProps) {
@@ -69,8 +56,8 @@ export default function ProposalDialog({
     defaultValues: {
       title: proposal?.title || "",
       description: proposal?.description || "",
-      category: proposal?.category || "",
-      scope: proposal?.scope || adminScope[0] || "local",
+      category: proposal?.category || "development",
+      scope: proposal?.scope || adminScope[0] || "regional",
       startsAt: proposal?.startsAt
         ? new Date(proposal.startsAt).toISOString().slice(0, 16)
         : "",
@@ -79,6 +66,18 @@ export default function ProposalDialog({
         : "",
     },
   });
+
+  const createProposal = useCreateProposal();
+  const updateProposal = useUpdateProposal(proposal?.id || "");
+
+  const handleCreateProposal = async (data: proposalSchemaType) => {
+    if (create) {
+      await createProposal.mutateAsync(data);
+    } else {
+      await updateProposal.mutateAsync(data);
+    }
+    setIsCreateDialogOpen(false);
+  };
 
   return (
     <div className="proposal-dialog">

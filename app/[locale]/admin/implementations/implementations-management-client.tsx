@@ -62,18 +62,10 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { toast } from "sonner";
-
-const implementationSchema = z.object({
-  proposalId: z.string().min(1, "Proposal is required"),
-  status: z.string().min(1, "Status is required"),
-  progressPercentage: z.number().min(0).max(100),
-  budgetAllocated: z.string().optional(),
-  budgetSpent: z.string().optional(),
-  startDate: z.string().optional(),
-  expectedCompletion: z.string().optional(),
-  actualCompletion: z.string().optional(),
-  notes: z.string().optional(),
-});
+import {
+  implementationSchema,
+  implementationSchemaType,
+} from "@/lib/validations/implimentation";
 
 interface ImplementationsManagementClientProps {
   implementations: any[];
@@ -94,17 +86,16 @@ export default function ImplementationsManagementClient({
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
-  const form = useForm<z.infer<typeof implementationSchema>>({
+  const form = useForm<implementationSchemaType>({
     resolver: zodResolver(implementationSchema),
     defaultValues: {
       proposalId: "",
-      status: "planned",
+      status: "not_started",
       progressPercentage: 0,
-      budgetAllocated: "",
-      budgetSpent: "",
-      startDate: "",
-      expectedCompletion: "",
-      actualCompletion: "",
+      budgetAllocated: 0,
+      budgetSpent: 0,
+      startDate: new Date(),
+      expectedCompletion: new Date(),
       notes: "",
     },
   });
@@ -148,9 +139,7 @@ export default function ImplementationsManagementClient({
     }
   };
 
-  const handleEditImplementation = async (
-    data: z.infer<typeof implementationSchema>
-  ) => {
+  const handleEditImplementation = async (data: implementationSchemaType) => {
     if (!editingImplementation) return;
 
     try {
@@ -186,17 +175,17 @@ export default function ImplementationsManagementClient({
       proposalId: implementation.proposalId,
       status: implementation.status,
       progressPercentage: implementation.progressPercentage || 0,
-      budgetAllocated: implementation.budgetAllocated?.toString() || "",
-      budgetSpent: implementation.budgetSpent?.toString() || "",
+      budgetAllocated: implementation.budgetAllocated || 0,
+      budgetSpent: implementation.budgetSpent || 0,
       startDate: implementation.startDate
-        ? new Date(implementation.startDate).toISOString().slice(0, 10)
-        : "",
+        ? new Date(implementation.startDate)
+        : new Date(),
       expectedCompletion: implementation.expectedCompletion
-        ? new Date(implementation.expectedCompletion).toISOString().slice(0, 10)
-        : "",
+        ? new Date(implementation.expectedCompletion)
+        : new Date(),
       actualCompletion: implementation.actualCompletion
-        ? new Date(implementation.actualCompletion).toISOString().slice(0, 10)
-        : "",
+        ? new Date(implementation.actualCompletion)
+        : undefined,
       notes: implementation.notes || "",
     });
     setIsEditDialogOpen(true);
@@ -384,7 +373,23 @@ export default function ImplementationsManagementClient({
                       <FormItem>
                         <FormLabel>{t("admin.startDate")}</FormLabel>
                         <FormControl>
-                          <Input type="date" {...field} />
+                          <Input
+                            type="date"
+                            value={
+                              field.value
+                                ? new Date(field.value)
+                                    .toISOString()
+                                    .split("T")[0]
+                                : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value
+                                  ? new Date(e.target.value)
+                                  : undefined
+                              )
+                            }
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -397,7 +402,23 @@ export default function ImplementationsManagementClient({
                       <FormItem>
                         <FormLabel>{t("admin.expectedCompletion")}</FormLabel>
                         <FormControl>
-                          <Input type="date" {...field} />
+                          <Input
+                            type="date"
+                            value={
+                              field.value
+                                ? new Date(field.value)
+                                    .toISOString()
+                                    .split("T")[0]
+                                : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value
+                                  ? new Date(e.target.value)
+                                  : undefined
+                              )
+                            }
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -410,7 +431,23 @@ export default function ImplementationsManagementClient({
                       <FormItem>
                         <FormLabel>{t("admin.actualCompletion")}</FormLabel>
                         <FormControl>
-                          <Input type="date" {...field} />
+                          <Input
+                            type="date"
+                            value={
+                              field.value
+                                ? new Date(field.value)
+                                    .toISOString()
+                                    .split("T")[0]
+                                : ""
+                            }
+                            onChange={(e) =>
+                              field.onChange(
+                                e.target.value
+                                  ? new Date(e.target.value)
+                                  : undefined
+                              )
+                            }
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -784,7 +821,23 @@ export default function ImplementationsManagementClient({
                     <FormItem>
                       <FormLabel>{t("admin.startDate")}</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} />
+                        <Input
+                          type="date"
+                          value={
+                            field.value
+                              ? new Date(field.value)
+                                  .toISOString()
+                                  .split("T")[0]
+                              : ""
+                          }
+                          onChange={(e) =>
+                            field.onChange(
+                              e.target.value
+                                ? new Date(e.target.value)
+                                : undefined
+                            )
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -797,7 +850,23 @@ export default function ImplementationsManagementClient({
                     <FormItem>
                       <FormLabel>{t("admin.expectedCompletion")}</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} />
+                        <Input
+                          type="date"
+                          value={
+                            field.value
+                              ? new Date(field.value)
+                                  .toISOString()
+                                  .split("T")[0]
+                              : ""
+                          }
+                          onChange={(e) =>
+                            field.onChange(
+                              e.target.value
+                                ? new Date(e.target.value)
+                                : undefined
+                            )
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -810,7 +879,23 @@ export default function ImplementationsManagementClient({
                     <FormItem>
                       <FormLabel>{t("admin.actualCompletion")}</FormLabel>
                       <FormControl>
-                        <Input type="date" {...field} />
+                        <Input
+                          type="date"
+                          value={
+                            field.value
+                              ? new Date(field.value)
+                                  .toISOString()
+                                  .split("T")[0]
+                              : ""
+                          }
+                          onChange={(e) =>
+                            field.onChange(
+                              e.target.value
+                                ? new Date(e.target.value)
+                                : undefined
+                            )
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

@@ -24,6 +24,10 @@ export type proposalScopeType = (typeof proposalScopes)[number];
 
 export type voteSelect = typeof votes.$inferSelect;
 export type voteInsert = typeof votes.$inferInsert;
+export type voteUpdate = Omit<
+  voteInsert,
+  "proposalId" | "userId" | "id" | "votedAt"
+>;
 
 export type feedbackSelect = typeof feedback.$inferSelect;
 export type feedbackInsert = typeof feedback.$inferInsert;

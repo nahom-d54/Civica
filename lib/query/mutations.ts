@@ -4,6 +4,8 @@ import { submitFeedback } from "../api/feedback";
 import { queryClient } from "./queryClient";
 import { voteForProposal } from "../api/vote";
 import { submitComplaint } from "../api/complaint";
+import { proposalSchemaType } from "../schemas";
+import { createProposal, updateProposal } from "../api/proposal";
 
 export const useSubmitFeedback = () => {
   return useMutation({
@@ -33,6 +35,28 @@ export const useSubmitComplaint = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["complaints"],
+      });
+    },
+  });
+};
+
+export const useCreateProposal = () => {
+  return useMutation({
+    mutationFn: createProposal,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["proposals"],
+      });
+    },
+  });
+};
+
+export const useUpdateProposal = (id: string) => {
+  return useMutation({
+    mutationFn: (data: proposalSchemaType) => updateProposal(id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["proposals"],
       });
     },
   });

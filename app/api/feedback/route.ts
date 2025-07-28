@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { feedback } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
-import { auth } from "@/lib/auth";
+import { auth, getServerSession } from "@/lib/auth";
 import { headers } from "next/headers";
 
 export async function POST(request: NextRequest) {
@@ -35,9 +35,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const session = await getServerSession();
 
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

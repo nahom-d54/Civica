@@ -27,7 +27,7 @@ export const proposals = pgTable("proposals", {
   description: text("description"),
   createdBy: text("created_by").references(() => user.id),
   scope: varchar("scope", { enum: proposalScopes }).notNull(),
-  target: varchar("target", { length: 100 }),
+  target: varchar("target", { length: 50 }).notNull(),
   category: varchar("category", { enum: proposalCategory }).notNull(),
   startsAt: timestamp("starts_at").notNull(),
   endsAt: timestamp("ends_at").notNull(),
@@ -40,6 +40,7 @@ export const proposals = pgTable("proposals", {
   updatedAt: timestamp("updated_at").defaultNow(),
   isDeleted: boolean("is_deleted").default(false),
   deletedAt: timestamp("deleted_at"),
+  deletedBy: text("deleted_by").references(() => user.id),
 });
 
 export const votes = pgTable("votes", {
@@ -75,7 +76,11 @@ export const admins = pgTable("admins", {
   assignedWoreda: varchar("assigned_woreda", { length: 100 }),
   jobDescription: text("job_description").notNull(),
   contactInfo: text("contact_info"),
-  permissions: text("permissions").array().$type<proposalScopeType[]>(),
+  permissions: text("permissions")
+    .array()
+    .$type<proposalScopeType[]>()
+    .default([])
+    .notNull(),
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   isDeleted: boolean("is_deleted").default(false),

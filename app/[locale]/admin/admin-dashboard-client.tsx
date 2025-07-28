@@ -22,6 +22,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { adminSelect } from "@/lib/types";
+import FeedbackForm from "@/components/feedback-form";
+import ProposalDialog from "@/components/proposal-dialog";
+import { useState } from "react";
 
 interface AdminDashboardClientProps {
   stats: {
@@ -43,6 +46,7 @@ export default function AdminDashboardClient({
   adminRole,
 }: AdminDashboardClientProps) {
   const t = useTranslations();
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   const statCards = [
     {
@@ -256,11 +260,14 @@ export default function AdminDashboardClient({
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button asChild className="h-auto p-4 flex-col space-y-2">
-              <Link href="/admin/proposals/new">
+            <Button
+              className="h-auto p-4 flex-col space-y-2"
+              onClick={() => setIsCreateDialogOpen(true)}
+            >
+              <div>
                 <FileText className="h-6 w-6" />
                 <span>{t("admin.createProposal")}</span>
-              </Link>
+              </div>
             </Button>
             <Button
               asChild
@@ -285,6 +292,11 @@ export default function AdminDashboardClient({
           </div>
         </CardContent>
       </Card>
+      <ProposalDialog
+        isCreateDialogOpen={isCreateDialogOpen}
+        setIsCreateDialogOpen={setIsCreateDialogOpen}
+        adminScope={adminRole?.permissions || []}
+      />
     </div>
   );
 }
