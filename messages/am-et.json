@@ -53,7 +53,42 @@
     "admin": "አስተዳዳሪ",
     "profile": "መገለጫ",
     "settings": "ቅንብሮች",
-    "help": "እርዳታ"
+    "help": "እርዳታ",
+    "complaints": "",
+    "suggestions": "",
+    "reports": "",
+    "inquiries": "",
+    "logout": "",
+    "home": "",
+    "about": "",
+    "privacy": "",
+    "terms": "",
+    "contact": "",
+    "language": "",
+    "languageOptions": {
+      "en": "",
+      "am": "",
+      "om": "",
+      "ti": ""
+    },
+    "notifications": "",
+    "notificationsDesc": "",
+    "notificationsEmpty": "",
+    "notificationsNew": "",
+    "notificationsRead": "",
+    "notificationsMarkAllRead": "",
+    "notificationsViewAll": "",
+    "notificationsSettings": "",
+    "notificationsSettingsDesc": "",
+    "notificationsEmail": "",
+    "notificationsEmailDesc": "",
+    "notificationsPush": "",
+    "notificationsPushDesc": "",
+    "notificationsSms": "",
+    "notificationsSmsDesc": "",
+    "notificationsSave": "",
+    "notificationsSaveSuccess": "",
+    "notificationsSaveError": ""
   },
   "dashboard": {
     "title": "ሲቪካ",
@@ -74,6 +109,8 @@
   "voting": {
     "title": "ንቁ ሀሳቦች",
     "subtitle": "በማህበረሰብ ተነሳሽነቶች እና ፖሊሲዎች ላይ ድምጽ ይስጡ",
+    "description": "መግለጫ",
+    "selectCategory": "ምድብ ይምረጡ",
     "activeProposals": "ንቁ ሀሳቦች",
     "castYourVote": "ድምጽዎን ይስጡ",
     "submitVote": "ድምጽ ላክ",
@@ -111,7 +148,11 @@
     "notEligibleDesc": "ይህ ሀሳብ ለ{region} ነዋሪዎች ብቻ ነው",
     "yourVote": "የእርስዎ ድምጽ",
     "anonymousMode": "ማንነት ሳይታወቅ",
-    "viewResults": "ውጤቶች ይመልከቱ"
+    "viewResults": "ውጤቶች ይመልከቱ",
+    "category": "ምድብ",
+    "region": "ክልል",
+    "status": "ሁኔታ",
+    "dates": "ቀናት"
   },
   "feedback": {
     "title": "የማህበረሰብ አስተያየት",
@@ -183,6 +224,22 @@
   "admin": {
     "title": "የአስተዳዳሪ ፓነል",
     "subtitle": "ሀሳቦችን ያስተዳድሩ፣ ትንታኔዎችን ይመልከቱ እና አስተያየቶችን ይያዙ",
+    "dashboard": "ዳሽቦርድ",
+    "welcomeBack": "እንኳን ደህና መጡ",
+    "activeProposals": "ንቁ ሀሳቦች",
+    "totalVotes": "ጠቅላላ ድምጾች",
+    "totalUsers": "ጠቅላላ ተጠቃሚዎች",
+    "recentProposals": "የቅርብ ጊዜ ሀሳቦች",
+    "latestProposals": "የቅርብ ጊዜ ሀሳቦች",
+    "viewAll": "ሁሉን ይመልከቱ",
+    "recentFeedback": "የቅርብ ጊዜ አስተያየት",
+    "latestFeedback": "የቅርብ ጊዜ አስተያየት",
+    "quickActions": "ፈጣን ድርጊቶች",
+    "commonTasks": "የተለመዱ ስራዎች",
+    "updateImplementations": "ትግበራዎችን ያዘምኑ",
+    "viewAnalytics": "ትንታኔዎችን ይመልከቱ",
+    "proposals": "ሀሳቦች",
+    "implementations": "ትግበራዎች",
     "role": "ሚና",
     "totalProposals": "ጠቅላላ ሀሳቦች",
     "activeVotes": "ንቁ ድምጾች",
@@ -190,7 +247,6 @@
     "completedProjects": "የተጠናቀቁ ፕሮጀክቶች",
     "createProposal": "ሀሳብ ፍጠር",
     "manageFeedback": "አስተያየት አስተዳድር",
-    "analytics": "ትንታኔዎች",
     "createNewProposal": "አዲስ ሀሳብ ፍጠር",
     "createProposalDesc": "ለማህበረሰብ ድምጽ አዲስ ሀሳብ ፍጠር",
     "proposalTitle": "የሀሳብ ርዕስ",
@@ -223,6 +279,63 @@
       "30": "30 ቀናት",
       "45": "45 ቀናት",
       "60": "60 ቀናት"
+    },
+    "proposalsManagement": "የሀሳቦች አስተዳደር",
+    "manageAllProposals": "ሁሉንም ሀሳቦች አስተዳድር",
+    "filterProposals": "ሀሳቦችን አጣራ",
+    "searchProposals": "ሀሳቦችን ፈልግ",
+    "allStatuses": "ሁሉም ሁኔታዎች",
+    "allCategories": "ሁሉም ምድቦች",
+    "actions": "ድርጊቶች",
+    "implementationsManagement": "የትግበራ አስተዳደር",
+    "trackProjectProgress": "የፕሮጀክት እድገትን ይከታተሉ",
+    "createImplementation": "ትግበራ ፍጠር",
+    "totalImplementations": "ጠቅላላ ትግበራዎች",
+    "inProgress": "በሂደት ላይ",
+    "completed": "ተጠናቋል",
+    "totalBudget": "ጠቅላላ በጀት",
+    "filterImplementations": "ትግበራዎችን አጣራ",
+    "searchImplementations": "ትግበራዎችን ፈልግ",
+    "implementationsList": "የትግበራ ዝርዝር",
+    "showingImplementations": "ትግበራዎችን ያሳያል",
+    "proposal": "ሀሳብ",
+    "status": "ሁኔታ",
+    "progress": "እድገት",
+    "budget": "በጀት",
+    "timeline": "የጊዜ መስመር",
+    "users": {
+      "title": "የተጠቃሚዎች አስተዳደር",
+      "description": "የተጠቃሚ መለያዎችን እና ፈቃዶችን አስተዳድር"
+    },
+    "feedback": {
+      "title": "የአስተያየት አስተዳደር",
+      "description": "የማህበረሰብ አስተያየትን ይገምግሙ እና ያስተዳድሩ"
+    },
+    "analytics": {
+      "title": "የትንታኔ ዳሽቦርድ",
+      "description": "ዝርዝር ትንታኔዎችን እና ግንዛቤዎችን ይመልከቱ",
+      "totalUsers": "ጠቅላላ ተጠቃሚዎች",
+      "fromLastMonth": "ከባለፈው ወር",
+      "totalVotes": "ጠቅላላ ድምጾች",
+      "activeProposals": "ንቁ ሀሳቦች",
+      "newThisWeek": "ይህ ሳምንት አዲስ",
+      "avgParticipation": "አማካይ ተሳትፎ",
+      "votingTrends": "የድምጽ አዝማሚያዎች",
+      "regionalParticipation": "ክልላዊ ተሳትፎ",
+      "proposalStatus": "የሀሳብ ሁኔታ",
+      "feedbackCategories": "የአስተያየት ምድቦች",
+      "topPerformingProposals": "የተሻሻሉ ሀሳቦች",
+      "engagement": "ተሳትፎ",
+      "recentActivity": "የቅርብ ጊዜ እንቅስቃሴ",
+      "systemHealth": "የስርዓት ጤና",
+      "serverUptime": "የአገልጋይ እንቅስቃሴ",
+      "avgResponseTime": "አማካይ የምላሽ ጊዜ",
+      "activeUsers": "ንቁ ተጠቃሚዎች",
+      "errorRate": "የስህተት መጠን"
+    },
+    "settings": {
+      "title": "የቅንብሮች አስተዳደር",
+      "description": "የስርዓት ቅንብሮችን እና ምርጫዎችን ያዘምኑ"
     }
   },
   "errors": {
@@ -372,5 +485,31 @@
       "viewActivity": "እንቅስቃሴዬን ይመልከቱ",
       "backToDashboard": "ወደ ዳሽቦርድ ተመለስ"
     }
+  },
+  "complaint": {
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "formTitle": "",
+    "formDescription": "",
+    "titlePlaceholder": "",
+    "category": "",
+    "messagePlaceholder": "",
+    "locationNote": "",
+    "agreeToTerms": "",
+    "termsDescription": "",
+    "submitComplaint": "",
+    "success": {
+      "title": "",
+      "message": "",
+      "viewActivity": "",
+      "backToDashboard": ""
+    }
+  },
+  "proposal": {
+    "create": "ሀሳብ ፍጠር",
+    "create.description": "ለማህበረሰብ ድምጽ አዲስ ሀሳብ ፍጠር።",
+    "edit": "ሀሳብ አርም",
+    "edit.description": "የሀሳብዎን ዝርዝሮች ያርሙ።"
   }
 }

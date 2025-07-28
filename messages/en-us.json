@@ -109,6 +109,8 @@
   "voting": {
     "title": "Active Proposals",
     "subtitle": "Vote on community initiatives and policies",
+    "description": "Description",
+    "selectCategory": "Select a category",
     "activeProposals": "Active Proposals",
     "castYourVote": "Cast Your Vote",
     "submitVote": "Submit Vote",
@@ -146,7 +148,11 @@
     "notEligibleDesc": "This proposal is only for residents of {region}",
     "yourVote": "Your Vote",
     "anonymousMode": "Anonymous Mode",
-    "viewResults": "View Results"
+    "viewResults": "View Results",
+    "category": "Category",
+    "region": "Region",
+    "status": "Status",
+    "dates": "Dates"
   },
   "feedback": {
     "title": "Community Feedback",
@@ -218,6 +224,22 @@
   "admin": {
     "title": "Admin Panel",
     "subtitle": "Manage proposals, view analytics, and handle feedback",
+    "dashboard": "Dashboard",
+    "welcomeBack": "Welcome Back",
+    "activeProposals": "Active Proposals",
+    "totalVotes": "Total Votes",
+    "totalUsers": "Total Users",
+    "recentProposals": "Recent Proposals",
+    "latestProposals": "Latest Proposals",
+    "viewAll": "View All",
+    "recentFeedback": "Recent Feedback",
+    "latestFeedback": "Latest Feedback",
+    "quickActions": "Quick Actions",
+    "commonTasks": "Common Tasks",
+    "updateImplementations": "Update Implementations",
+    "viewAnalytics": "View Analytics",
+    "proposals": "Proposals",
+    "implementations": "Implementations",
     "role": "Role",
     "totalProposals": "Total Proposals",
     "activeVotes": "Active Votes",
@@ -225,7 +247,6 @@
     "completedProjects": "Completed Projects",
     "createProposal": "Create Proposal",
     "manageFeedback": "Manage Feedback",
-    "analytics": "Analytics",
     "createNewProposal": "Create New Proposal",
     "createProposalDesc": "Create a new proposal for community voting",
     "proposalTitle": "Proposal Title",
@@ -258,6 +279,64 @@
       "30": "30 days",
       "45": "45 days",
       "60": "60 days"
+    },
+    "editProposal": "Edit Proposal",
+    "fillProposalDetails": "Fill in the proposal details",
+    "manageAllProposals": "Manage All Proposals",
+    "filterProposals": "Filter Proposals",
+    "searchProposals": "Search Proposals",
+    "allStatuses": "All Statuses",
+    "allCategories": "All Categories",
+    "actions": "Actions",
+    "implementationsManagement": "Implementations Management",
+    "trackProjectProgress": "Track Project Progress",
+    "createImplementation": "Create Implementation",
+    "totalImplementations": "Total Implementations",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "totalBudget": "Total Budget",
+    "filterImplementations": "Filter Implementations",
+    "searchImplementations": "Search Implementations",
+    "implementationsList": "Implementations List",
+    "showingImplementations": "Showing implementations",
+    "proposal": "Proposal",
+    "status": "Status",
+    "progress": "Progress",
+    "budget": "Budget",
+    "timeline": "Timeline",
+    "users": {
+      "title": "Users Management",
+      "description": "Manage user accounts and permissions"
+    },
+    "feedback": {
+      "title": "Feedback Management",
+      "description": "Review and manage community feedback"
+    },
+    "analytics": {
+      "title": "Analytics Dashboard",
+      "description": "View detailed analytics and insights",
+      "totalUsers": "Total Users",
+      "fromLastMonth": "from last month",
+      "totalVotes": "Total Votes",
+      "activeProposals": "Active Proposals",
+      "newThisWeek": "new this week",
+      "avgParticipation": "Average Participation",
+      "votingTrends": "Voting Trends",
+      "regionalParticipation": "Regional Participation",
+      "proposalStatus": "Proposal Status",
+      "feedbackCategories": "Feedback Categories",
+      "topPerformingProposals": "Top Performing Proposals",
+      "engagement": "Engagement",
+      "recentActivity": "Recent Activity",
+      "systemHealth": "System Health",
+      "serverUptime": "Server Uptime",
+      "avgResponseTime": "Average Response Time",
+      "activeUsers": "Active Users",
+      "errorRate": "Error Rate"
+    },
+    "settings": {
+      "title": "Settings Management",
+      "description": "Configure system settings and preferences"
     }
   },
   "complaint": {
@@ -442,5 +521,11 @@
       "viewActivity": "View My Activity",
       "backToDashboard": "Back to Dashboard"
     }
+  },
+  "proposal": {
+    "create": "Create Proposal",
+    "createDescription": "Create a new proposal for community voting.",
+    "edit": "Edit Proposal",
+    "editDescription": "Edit the details of your proposal."
   }
 }

@@ -84,7 +84,7 @@ export default function ProposalDialog({
       <h2 className="text-xl font-bold">
         {t(`proposal.${create ? "create" : "edit"}`)}
       </h2>
-      <p>{t(`proposal.${create ? "create" : "edit"}.description`)}</p>
+      <p>{t(`proposal.${create ? "create" : "edit"}Description`)}</p>
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogTrigger asChild>
           <Button>
