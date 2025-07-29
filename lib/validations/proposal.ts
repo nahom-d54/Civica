@@ -14,7 +14,7 @@ export const proposalSchema = z.object({
     .max(255, "errors.maxLength"),
   category: z.enum(proposalCategory),
   scope: z.enum(proposalScopes),
-  target: z.string().min(1, "Target is required"),
+  // target: z.string().min(1, "Target is required"),
   startsAt: z.string().min(1, "Start date is required"),
   endsAt: z.string().min(1, "End date is required"),
 });

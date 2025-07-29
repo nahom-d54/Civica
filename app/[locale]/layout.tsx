@@ -1,9 +1,12 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
+import { db } from "@/lib/db";
+import { eq } from "drizzle-orm";
+import { user } from "@/auth-schema";
 
 export const metadata: Metadata = {
   title: "Civica - Digital Voting & Community Feedback",
@@ -22,6 +25,12 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
+  }
+  const superadmin = await db.query.user.findFirst({
+    where: eq(user.role, "superadmin"),
+  });
+  if (!superadmin) {
+    redirect("/install");
   }
 
   return (

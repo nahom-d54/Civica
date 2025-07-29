@@ -4,8 +4,8 @@ import { submitFeedback } from "../api/feedback";
 import { queryClient } from "./queryClient";
 import { voteForProposal } from "../api/vote";
 import { submitComplaint } from "../api/complaint";
-import { proposalSchemaType } from "../schemas";
 import { createProposal, updateProposal } from "../api/proposal";
+import { proposalSchemaType } from "../validations/proposal";
 
 export const useSubmitFeedback = () => {
   return useMutation({

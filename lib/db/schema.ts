@@ -151,6 +151,39 @@ export const fayda = pgTable("fayda", {
   date_of_expiry: date("date_of_expiry"),
 });
 
+export const appState = pgTable("app_state", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  installed: boolean("installed").default(false),
+  installedAt: timestamp("installed_at", { mode: "date" }),
+  siteName: varchar("app_name", { length: 100 }).notNull(),
+  siteDescription: text("app_description"),
+  appVersion: varchar("app_version", { length: 50 }),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+  isDeleted: boolean("is_deleted").default(false),
+  deletedAt: timestamp("deleted_at"),
+  deletedBy: text("deleted_by").references(() => user.id),
+  isActive: boolean("is_active").default(true),
+  isMaintenanceMode: boolean("is_maintenance_mode").default(false),
+  maintenanceMessage: text("maintenance_message"),
+  maintenanceBy: text("maintenance_by").references(() => user.id),
+  maintenanceCreatedAt: timestamp("maintenance_created_at").defaultNow(),
+  maintenanceUpdatedAt: timestamp("maintenance_updated_at").defaultNow(),
+  maintenanceIsActive: boolean("maintenance_is_active").default(false),
+  maintenanceIsActiveAt: timestamp("maintenance_is_active_at").defaultNow(),
+  maintenanceIsActiveUpdatedAt: timestamp(
+    "maintenance_is_active_updated_at"
+  ).defaultNow(),
+});
+
+export const oicdSessions = pgTable("oidc_sessions", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  state: varchar("state", { length: 255 }).notNull(),
+  codeVerifier: text("code_verifier").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  expiresAt: timestamp("expires_at").notNull(),
+});
+
 // Relations
 export const usersRelations = relations(user, ({ many, one }) => ({
   proposals: many(proposals),

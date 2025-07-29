@@ -92,7 +92,7 @@ export default function ProposalDialog({
             {t(`admin.${create ? "create" : "edit"}Proposal`)}
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl overflow-y-auto ">
           <DialogHeader>
             <DialogTitle>
               {t(`admin.${create ? "create" : "edit"}Proposal`)}
@@ -190,6 +190,20 @@ export default function ProposalDialog({
                   )}
                 />
               </div>
+              {/* Use the users region, zpne, woreda to set the target on voting scope */}
+              {/* <FormField
+                control={form.control}
+                name="target"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("voting.target")}</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              /> */}
               <div className="grid grid-cols-2 gap-4">
                 <FormField
                   control={form.control}

@@ -1,8 +1,14 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "./db";
-import { admin, customSession } from "better-auth/plugins";
+import {
+  admin as adminPlugin,
+  customSession,
+  genericOAuth,
+} from "better-auth/plugins";
 import { headers } from "next/headers";
+import { ac, admin, superadmin, user } from "./permissions";
+import { generateSignedJwt } from "./authUtils";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -21,7 +27,35 @@ export const auth = betterAuth({
     updateAge: 60 * 60 * 24, // 1 day
   },
   plugins: [
-    admin({ adminRoles: ["admin", "superadmin"] }),
+    adminPlugin({
+      ac,
+      roles: {
+        user,
+        admin,
+        superadmin,
+      },
+    }),
+    genericOAuth({
+      config: [
+        {
+          providerId: "verifayda",
+          discoveryUrl:
+            "https://esignet.ida.fayda.et/.well-known/openid-configuration",
+          clientId: process.env.ESIGNET_CLIENT_ID as string,
+          scopes: ["openid", "profile", "email"],
+          redirectURI: `${process.env.BETTER_AUTH_URL}/callback`,
+          injectClientAssertion: async ({ params }) => {
+            const clientAssertion = await generateSignedJwt();
+            return {
+              ...params,
+              client_assertion: clientAssertion,
+              client_assertion_type:
+                "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+            };
+          },
+        },
+      ],
+    }),
     customSession(async ({ user, session }) => {
       const data = {
         user: {

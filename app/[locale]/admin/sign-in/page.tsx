@@ -34,22 +34,27 @@ export default function SignInPage() {
   const router = useRouter();
   const { locale } = useParams();
 
-  const onSubmit = async () => {
+  const form = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      faydaId: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = async (data: SignInFormData) => {
     setIsLoading(true);
     setError("");
 
     try {
       // In a real implementation, this would authenticate with Fayda ID
       // For demo purposes, we'll use email/password with mock Fayda IDs
+      const mockEmail = `${data.faydaId}@fayda.gov.et`;
 
-      const { data, error } = await authClient.signIn.oauth2({
-        providerId: "verifayda", // required
-        errorCallbackURL: "/error-page",
-        disableRedirect: false,
-        requestSignUp: false,
+      await authClient.signIn.email({
+        email: mockEmail,
+        password: data.password || "demo123",
       });
-
-      console.log(data);
 
       router.push(`/${locale}/dashboard`);
     } catch (err) {
@@ -87,21 +92,25 @@ export default function SignInPage() {
             <CardDescription>{t("dashboard.welcome")}</CardDescription>
           </CardHeader>
           <CardContent>
-            {/* <Form {...form}>
+            <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4"
               >
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="faydaId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t("auth.email")}</FormLabel>
+                      <FormLabel>{t("auth.faydaId")}</FormLabel>
                       <FormControl>
                         <Input placeholder="FYD001234567" {...field} />
                       </FormControl>
                       <FormMessage />
+                      <p className="text-xs text-gray-500">
+                        {t("auth.demoIds")}: FYD001234567, FYD001234568,
+                        FYD001234569, FYD001234572 (admin)
+                      </p>
                     </FormItem>
                   )}
                 />
@@ -111,7 +120,7 @@ export default function SignInPage() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t("auth.password")}</FormLabel>
+                      <FormLabel>{t("auth.pin")}</FormLabel>
                       <FormControl>
                         <Input
                           type="password"
@@ -120,6 +129,9 @@ export default function SignInPage() {
                         />
                       </FormControl>
                       <FormMessage />
+                      <p className="text-xs text-gray-500">
+                        {t("auth.demoPassword")}
+                      </p>
                     </FormItem>
                   )}
                 />
@@ -141,15 +153,7 @@ export default function SignInPage() {
                   )}
                 </Button>
               </form>
-            </Form> */}
-            <Button
-              type="button"
-              onClick={onSubmit}
-              className="w-full"
-              disabled={isLoading}
-            >
-              {t("auth.signInWithFayda")}
-            </Button>
+            </Form>
 
             <div className="mt-6 p-4 bg-green-50 rounded-lg">
               <h4 className="font-medium text-green-800 mb-2">
