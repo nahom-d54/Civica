@@ -14,10 +14,6 @@ export default async function HomePage({
   });
   const { locale } = await params;
 
-  if (!session) {
-    redirect(`/${locale}/sign-in`);
-  }
-
   if (checkAdminRole(session?.user?.role)) {
     redirect(`/${locale}/admin`);
   }
