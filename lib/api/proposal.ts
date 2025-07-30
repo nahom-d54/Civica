@@ -13,7 +13,8 @@ export const getProposalsForUser = async ({
   if (!res.ok) {
     throw new Error("Failed to fetch proposals");
   }
-  return res.json();
+  const jsonResponse = await res.json();
+  return Array.isArray(res.proposals) ? res.proposals : [];
 };
 
 export const createProposal = async (data: proposalSchemaType) => {

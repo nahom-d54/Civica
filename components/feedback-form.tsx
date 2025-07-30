@@ -48,16 +48,17 @@ import { useFeedbacks, useProposalsForUser } from "@/lib/query/queries";
 interface FeedbackFormProps {
   userRegion: string | undefined;
   userWoreda: string | undefined;
+  proposals?: any[]; // Adjust type as needed
 }
 
 export default function FeedbackForm({
+  proposals,
   userRegion,
   userWoreda,
 }: FeedbackFormProps) {
   const t = useTranslations();
   const submitFeedback = useSubmitFeedback();
   const { data: recentFeedbacks } = useFeedbacks({});
-  const { data: proposals } = useProposalsForUser({});
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -348,49 +349,53 @@ export default function FeedbackForm({
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentFeedbacks?.map((feedback) => (
-                <div
-                  key={feedback.id}
-                  className="border rounded-lg p-4 space-y-2"
-                >
-                  <div className="flex justify-between items-start">
-                    <h4 className="font-medium text-gray-900">
-                      {feedback.title}
-                    </h4>
-                    <div className="flex space-x-2">
-                      <Badge
-                        className={getPriorityColor(
-                          feedback.priority || "medium"
-                        )}
-                      >
-                        {t(`feedback.priorities.${feedback.priority}`)}
-                      </Badge>
-                      <Badge
-                        className={getStatusColor(feedback.status || "pending")}
-                      >
-                        {getStatusIcon(feedback.status || "pending")}
-                        <span className="ml-1 capitalize">
-                          {t(
-                            `feedback.statuses.${feedback.status || "pending"}`
+              {recentFeedbacks ? (
+                recentFeedbacks?.map((feedback) => (
+                  <div
+                    key={feedback.id}
+                    className="border rounded-lg p-4 space-y-2"
+                  >
+                    <div className="flex justify-between items-start">
+                      <h4 className="font-medium text-gray-900">
+                        {feedback.title}
+                      </h4>
+                      <div className="flex space-x-2">
+                        <Badge
+                          className={getPriorityColor(
+                            feedback.priority || "medium"
                           )}
-                        </span>
-                      </Badge>
+                        >
+                          {t(`feedback.priorities.${feedback.priority}`)}
+                        </Badge>
+                        <Badge
+                          className={getStatusColor(
+                            feedback.status || "pending"
+                          )}
+                        >
+                          {getStatusIcon(feedback.status || "pending")}
+                          <span className="ml-1 capitalize">
+                            {t(
+                              `feedback.statuses.${
+                                feedback.status || "pending"
+                              }`
+                            )}
+                          </span>
+                        </Badge>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm text-gray-500">
+                      <span className="capitalize">
+                        {t(`feedback.categories.${feedback.category}`)}
+                      </span>
+                      <span>
+                        {new Date(
+                          feedback.submittedAt || Date.now()
+                        ).toLocaleDateString()}
+                      </span>
                     </div>
                   </div>
-                  <div className="flex justify-between items-center text-sm text-gray-500">
-                    <span className="capitalize">
-                      {t(`feedback.categories.${feedback.category}`)}
-                    </span>
-                    <span>
-                      {new Date(
-                        feedback.submittedAt || Date.now()
-                      ).toLocaleDateString()}
-                    </span>
-                  </div>
-                </div>
-              ))}
-
-              {recentFeedbacks?.length === 0 && (
+                ))
+              ) : (
                 <div className="text-center py-8">
                   <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-600">{t("feedback.noFeedback")}</p>

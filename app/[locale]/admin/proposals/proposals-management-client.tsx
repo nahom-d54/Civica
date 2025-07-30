@@ -63,6 +63,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { toast } from "sonner";
+import ProposalDialog from "@/components/proposal-dialog";
 
 const proposalSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -215,6 +216,7 @@ export default function ProposalsManagementClient({
 
   const openEditDialog = (proposal: any) => {
     setEditingProposal(proposal);
+
     form.reset({
       title: proposal.title,
       description: proposal.description || "",
@@ -247,164 +249,11 @@ export default function ProposalsManagementClient({
           </h1>
           <p className="text-gray-600 mt-1">{t("admin.manageAllProposals")}</p>
         </div>
-        <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-          <DialogTrigger asChild>
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              {t("admin.createProposal")}
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle>{t("admin.createNewProposal")}</DialogTitle>
-              <DialogDescription>
-                {t("admin.fillProposalDetails")}
-              </DialogDescription>
-            </DialogHeader>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(handleCreateProposal)}
-                className="space-y-4"
-              >
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.title")}</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="description"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.description")}</FormLabel>
-                      <FormControl>
-                        <Textarea {...field} rows={3} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="category"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("voting.category")}</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue
-                                placeholder={t("voting.selectCategory")}
-                              />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {categories.map((category) => (
-                              <SelectItem key={category} value={category}>
-                                {t(`voting.categories.${category}`)}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="regionScope"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("voting.regionScope")}</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {regionScopes.map((scope) => (
-                              <SelectItem key={scope} value={scope}>
-                                {t(`voting.regionScopes.${scope}`)}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <FormField
-                  control={form.control}
-                  name="targetRegion"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.targetRegion")}</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="startsAt"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("voting.startDate")}</FormLabel>
-                        <FormControl>
-                          <Input type="datetime-local" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="endsAt"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t("voting.endDate")}</FormLabel>
-                        <FormControl>
-                          <Input type="datetime-local" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <DialogFooter>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setIsCreateDialogOpen(false)}
-                  >
-                    {t("common.cancel")}
-                  </Button>
-                  <Button type="submit">{t("admin.createProposal")}</Button>
-                </DialogFooter>
-              </form>
-            </Form>
-          </DialogContent>
-        </Dialog>
+        <ProposalDialog
+          isCreateDialogOpen={isCreateDialogOpen}
+          setIsCreateDialogOpen={setIsCreateDialogOpen}
+          adminScope={adminRole?.permissions || []}
+        />
       </div>
 
       {/* Filters */}
@@ -478,103 +327,114 @@ export default function ProposalsManagementClient({
             </TableHeader>
             <TableBody>
               {filteredProposals.map((proposal) => (
-                <TableRow key={proposal.id}>
-                  <TableCell>
-                    <div>
-                      <p className="font-medium">{proposal.title}</p>
-                      <p className="text-sm text-gray-500 truncate max-w-xs">
-                        {proposal.description}
-                      </p>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">
-                      {t(`voting.categories.${proposal.category}`)}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center space-x-1">
-                      <MapPin className="h-3 w-3 text-gray-400" />
-                      <span className="text-sm">
-                        {proposal.targetRegion || proposal.regionScope}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center space-x-1">
-                      <Users className="h-3 w-3 text-gray-400" />
-                      <span className="text-sm font-medium">
-                        {proposal.totalVotes}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center space-x-2">
-                      <Badge
-                        className={
-                          proposal.isActive &&
-                          new Date(proposal.endsAt) > new Date()
-                            ? "bg-green-100 text-green-800"
-                            : "bg-gray-100 text-gray-800"
-                        }
-                      >
-                        {proposal.isActive &&
-                        new Date(proposal.endsAt) > new Date()
-                          ? t("voting.active")
-                          : t("voting.ended")}
+                <>
+                  <TableRow key={proposal.id}>
+                    <TableCell>
+                      <div>
+                        <p className="font-medium">{proposal.title}</p>
+                        <p className="text-sm text-gray-500 truncate max-w-xs">
+                          {proposal.description}
+                        </p>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">
+                        {t(`voting.categories.${proposal.category}`)}
                       </Badge>
-                      <Switch
-                        checked={proposal.isActive}
-                        onCheckedChange={() =>
-                          handleToggleStatus(proposal.id, proposal.isActive)
-                        }
-                        size="sm"
-                      />
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-sm text-gray-500">
+                    </TableCell>
+                    <TableCell>
                       <div className="flex items-center space-x-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>
-                          {new Date(proposal.startsAt).toLocaleDateString()}
+                        <MapPin className="h-3 w-3 text-gray-400" />
+                        <span className="text-sm">
+                          {proposal.targetRegion || proposal.regionScope}
                         </span>
                       </div>
-                      <div className="flex items-center space-x-1 mt-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>
-                          {new Date(proposal.endsAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center space-x-1">
+                        <Users className="h-3 w-3 text-gray-400" />
+                        <span className="text-sm font-medium">
+                          {proposal.totalVotes}
                         </span>
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => router.push(`/proposal/${proposal.id}`)}
-                      >
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => openEditDialog(proposal)}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleDeleteProposal(proposal.id)}
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center space-x-2">
+                        <Badge
+                          className={
+                            proposal.isActive &&
+                            new Date(proposal.endsAt) > new Date()
+                              ? "bg-green-100 text-green-800"
+                              : "bg-gray-100 text-gray-800"
+                          }
+                        >
+                          {proposal.isActive &&
+                          new Date(proposal.endsAt) > new Date()
+                            ? t("voting.active")
+                            : t("voting.ended")}
+                        </Badge>
+                        <Switch
+                          checked={proposal.isActive}
+                          onCheckedChange={() =>
+                            handleToggleStatus(proposal.id, proposal.isActive)
+                          }
+                          size="sm"
+                        />
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="text-sm text-gray-500">
+                        <div className="flex items-center space-x-1">
+                          <Calendar className="h-3 w-3" />
+                          <span>
+                            {new Date(proposal.startsAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-1 mt-1">
+                          <Calendar className="h-3 w-3" />
+                          <span>
+                            {new Date(proposal.endsAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center space-x-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() =>
+                            router.push(`/proposal/${proposal.id}`)
+                          }
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => openEditDialog(proposal)}
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleDeleteProposal(proposal.id)}
+                          className="text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                  <ProposalDialog
+                    proposal={proposal}
+                    isCreateDialogOpen={isEditDialogOpen}
+                    setIsCreateDialogOpen={setIsEditDialogOpen}
+                    adminScope={adminRole?.permissions || []}
+                    create={false}
+                  />
+                </>
               ))}
             </TableBody>
           </Table>
@@ -582,156 +442,6 @@ export default function ProposalsManagementClient({
       </Card>
 
       {/* Edit Dialog */}
-      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>{t("admin.editProposal")}</DialogTitle>
-            <DialogDescription>
-              {t("admin.updateProposalDetails")}
-            </DialogDescription>
-          </DialogHeader>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleEditProposal)}
-              className="space-y-4"
-            >
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("voting.title")}</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("voting.description")}</FormLabel>
-                    <FormControl>
-                      <Textarea {...field} rows={3} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="grid grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.category")}</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {categories.map((category) => (
-                            <SelectItem key={category} value={category}>
-                              {t(`voting.categories.${category}`)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="regionScope"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.regionScope")}</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {regionScopes.map((scope) => (
-                            <SelectItem key={scope} value={scope}>
-                              {t(`voting.regionScopes.${scope}`)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <FormField
-                control={form.control}
-                name="targetRegion"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("voting.targetRegion")}</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="grid grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="startsAt"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.startDate")}</FormLabel>
-                      <FormControl>
-                        <Input type="datetime-local" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="endsAt"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.endDate")}</FormLabel>
-                      <FormControl>
-                        <Input type="datetime-local" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <DialogFooter>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setIsEditDialogOpen(false)}
-                >
-                  {t("common.cancel")}
-                </Button>
-                <Button type="submit">{t("admin.updateProposal")}</Button>
-              </DialogFooter>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

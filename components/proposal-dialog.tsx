@@ -47,7 +47,7 @@ export default function ProposalDialog({
   proposal,
   isCreateDialogOpen,
   setIsCreateDialogOpen,
-  create = false,
+  create = true,
   adminScope,
 }: ProposalDialogProps) {
   const t = useTranslations();
@@ -80,40 +80,138 @@ export default function ProposalDialog({
   };
 
   return (
-    <div className="proposal-dialog">
-      <h2 className="text-xl font-bold">
-        {t(`proposal.${create ? "create" : "edit"}`)}
-      </h2>
-      <p>{t(`proposal.${create ? "create" : "edit"}Description`)}</p>
-      <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-        <DialogTrigger asChild>
-          <Button>
-            <Plus className="h-4 w-4 mr-2" />
+    <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+      {/* <DialogTrigger asChild>
+        <Button>
+          <Plus className="h-4 w-4 mr-2" />
+          {t(`admin.${create ? "create" : "edit"}Proposal`)}
+        </Button>
+      </DialogTrigger> */}
+      <DialogContent className="max-w-2xl overflow-y-auto ">
+        <DialogHeader>
+          <DialogTitle>
             {t(`admin.${create ? "create" : "edit"}Proposal`)}
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-2xl overflow-y-auto ">
-          <DialogHeader>
-            <DialogTitle>
-              {t(`admin.${create ? "create" : "edit"}Proposal`)}
-            </DialogTitle>
-            <DialogDescription>
-              {t("admin.fillProposalDetails")}
-            </DialogDescription>
-          </DialogHeader>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleCreateProposal)}
-              className="space-y-4"
-            >
+          </DialogTitle>
+          <DialogDescription>
+            {t("admin.fillProposalDetails")}
+          </DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleCreateProposal)}
+            className="space-y-4"
+          >
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("voting.title")}</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("voting.description")}</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} rows={3} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
-                name="title"
+                name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("voting.title")}</FormLabel>
+                    <FormLabel>{t("voting.category")}</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue
+                            placeholder={t("voting.selectCategory")}
+                          />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {proposalCategory.map((category) => (
+                          <SelectItem key={category} value={category}>
+                            {t(`voting.categories.${category}`)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="scope"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("voting.scope")}</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {adminScope.map((scope) => (
+                          <SelectItem key={scope} value={scope}>
+                            {t(`voting.scope.${scope}`)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            {/* Use the users region, zpne, woreda to set the target on voting scope for future */}
+            <FormField
+              control={form.control}
+              name="target"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("voting.target")}</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="startsAt"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("voting.startDate")}</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        type="datetime-local"
+                        {...field}
+                        min={new Date().toISOString()}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -121,131 +219,35 @@ export default function ProposalDialog({
               />
               <FormField
                 control={form.control}
-                name="description"
+                name="endsAt"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("voting.description")}</FormLabel>
+                    <FormLabel>{t("voting.endDate")}</FormLabel>
                     <FormControl>
-                      <Textarea {...field} rows={3} />
+                      <Input
+                        type="datetime-local"
+                        {...field}
+                        min={new Date().toISOString()}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <div className="grid grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.category")}</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue
-                              placeholder={t("voting.selectCategory")}
-                            />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {proposalCategory.map((category) => (
-                            <SelectItem key={category} value={category}>
-                              {t(`voting.categories.${category}`)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="scope"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.scope")}</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {adminScope.map((scope) => (
-                            <SelectItem key={scope} value={scope}>
-                              {t(`voting.scope.${scope}`)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              {/* Use the users region, zpne, woreda to set the target on voting scope */}
-              {/* <FormField
-                control={form.control}
-                name="target"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("voting.target")}</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              /> */}
-              <div className="grid grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="startsAt"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.startDate")}</FormLabel>
-                      <FormControl>
-                        <Input type="datetime-local" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="endsAt"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("voting.endDate")}</FormLabel>
-                      <FormControl>
-                        <Input type="datetime-local" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <DialogFooter>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setIsCreateDialogOpen(false)}
-                >
-                  {t("common.cancel")}
-                </Button>
-                <Button type="submit">{t("admin.createProposal")}</Button>
-              </DialogFooter>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
-    </div>
+            </div>
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setIsCreateDialogOpen(false)}
+              >
+                {t("common.cancel")}
+              </Button>
+              <Button type="submit">{t("admin.createProposal")}</Button>
+            </DialogFooter>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
   );
 }

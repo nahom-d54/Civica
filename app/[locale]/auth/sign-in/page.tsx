@@ -37,7 +37,7 @@ export default function SignInPage() {
   const form = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      faydaId: "",
+      email: "",
       password: "",
     },
   });
@@ -49,10 +49,9 @@ export default function SignInPage() {
     try {
       // In a real implementation, this would authenticate with Fayda ID
       // For demo purposes, we'll use email/password with mock Fayda IDs
-      const mockEmail = `${data.faydaId}@fayda.gov.et`;
 
       await authClient.signIn.email({
-        email: mockEmail,
+        email: data.email,
         password: data.password || "demo123",
       });
 
@@ -99,7 +98,7 @@ export default function SignInPage() {
               >
                 <FormField
                   control={form.control}
-                  name="faydaId"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t("auth.faydaId")}</FormLabel>

@@ -4,7 +4,10 @@ import { implementations } from "@/lib/db/schema";
 import { auth, getServerSession } from "@/lib/auth";
 import { headers } from "next/headers";
 import { eq } from "drizzle-orm";
-import { implementationSchema } from "@/lib/validations/implimentation";
+import {
+  implementationSchema,
+  implementationSchemaBackend,
+} from "@/lib/validations/implimentation";
 
 export async function PUT(
   request: NextRequest,
@@ -18,23 +21,35 @@ export async function PUT(
     }
 
     const body = await request.json();
-    const data = implementationSchema.safeParse(body);
+    const data = implementationSchemaBackend.safeParse(body);
     if (!data.success) {
       return NextResponse.json({
         error: "Invalid data",
       });
     }
+    let effectivestatus: any = data.data.status;
+    if (effectivestatus !== "cancelled" || effectivestatus !== "completed") {
+      if (
+        data.data.progressPercentage > 0 &&
+        data.data.progressPercentage < 100
+      ) {
+        effectivestatus = "in-progress";
+      }
+      if (data.data.progressPercentage === 100) {
+        effectivestatus = "completed";
+      }
+    }
 
     await db
       .update(implementations)
       .set({
-        status: data.data.status,
+        status: effectivestatus,
         progressPercentage: data.data.progressPercentage,
         budgetAllocated: data.data.budgetAllocated,
         budgetSpent: data.data.budgetSpent,
-        startDate: data.data.startDate,
-        expectedCompletion: data.data.expectedCompletion,
-        actualCompletion: data.data.actualCompletion,
+        startDate: data.data.startDate.toISOString(),
+        expectedCompletion: data.data.expectedCompletion.toISOString(),
+        actualCompletion: data.data.actualCompletion?.toISOString(),
         notes: data.data.notes,
         updatedBy: session.user.id,
         updatedAt: new Date(),

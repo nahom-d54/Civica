@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
       })
       .returning();
 
-    return NextResponse.json({ proposal: insertedData }, { status: 201 });
+    return NextResponse.json({ proposals: insertedData }, { status: 201 });
   } catch (error) {
     console.error("Error fetching proposals:", error);
     return NextResponse.json(

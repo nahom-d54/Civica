@@ -16,7 +16,7 @@ export const useFeedbacks = ({
   limit?: number;
 }) => {
   return useQuery<feedbackSelect[]>({
-    queryKey: ["feedbacks", locale, page, limit],
+    queryKey: ["feedbacks", page, limit],
     queryFn: () => getFeedbacks({ locale, page, limit }),
     staleTime: 1000 * 60 * 5, // 5 minutes
     refetchOnWindowFocus: false,
@@ -41,8 +41,8 @@ export const useComplaints = ({
   page?: number;
   limit?: number;
 }) => {
-  return useQuery<feedbackSelect[]>({
-    queryKey: ["complaints", locale, page, limit],
+  return useQuery({
+    queryKey: ["complaints", page, limit],
     queryFn: () => getFeedbacks({ locale, page, limit }),
     staleTime: 1000 * 60 * 5, // 5 minutes
     refetchOnWindowFocus: false,
@@ -54,8 +54,8 @@ export const useProposalsForUser = ({
 }: {
   locale?: localeType;
 }) => {
-  return useQuery<feedbackSelect[]>({
-    queryKey: ["proposals", locale],
+  return useQuery({
+    queryKey: ["proposals"],
     queryFn: () => getProposalsForUser({ locale }), // Adjust API call as needed
     staleTime: 1000 * 60 * 5, // 5 minutes
     refetchOnWindowFocus: false,

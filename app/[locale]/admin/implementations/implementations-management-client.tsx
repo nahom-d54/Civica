@@ -64,8 +64,9 @@ import {
 import { toast } from "sonner";
 import {
   implementationSchema,
-  implementationSchemaType,
+  type implementationSchemaType,
 } from "@/lib/validations/implimentation";
+import { implementationChoices } from "@/lib/constants";
 
 interface ImplementationsManagementClientProps {
   implementations: any[];
@@ -117,7 +118,7 @@ export default function ImplementationsManagementClient({
     data: z.infer<typeof implementationSchema>
   ) => {
     try {
-      const response = await fetch("/api/admin/implementations", {
+      const response = await fetch("/api/implementations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -144,7 +145,7 @@ export default function ImplementationsManagementClient({
 
     try {
       const response = await fetch(
-        `/api/admin/implementations/${editingImplementation.id}`,
+        `/api/implementations/${editingImplementation.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -173,10 +174,10 @@ export default function ImplementationsManagementClient({
     setEditingImplementation(implementation);
     form.reset({
       proposalId: implementation.proposalId,
-      status: implementation.status,
-      progressPercentage: implementation.progressPercentage || 0,
-      budgetAllocated: implementation.budgetAllocated || 0,
-      budgetSpent: implementation.budgetSpent || 0,
+      status: implementation.status || "in_progress",
+      progressPercentage: Number(implementation.progressPercentage) || 0,
+      budgetAllocated: Number(implementation.budgetAllocated) || 0,
+      budgetSpent: Number(implementation.budgetSpent) || 0,
       startDate: implementation.startDate
         ? new Date(implementation.startDate)
         : new Date(),
@@ -191,14 +192,7 @@ export default function ImplementationsManagementClient({
     setIsEditDialogOpen(true);
   };
 
-  const statuses = [
-    "planned",
-    "in-progress",
-    "completed",
-    "cancelled",
-    "on-hold",
-  ];
-
+  const statuses = implementationChoices;
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "completed":
@@ -326,7 +320,7 @@ export default function ImplementationsManagementClient({
                             type="number"
                             min="0"
                             max="100"
-                            {...field}
+                            value={field.value}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
@@ -345,7 +339,14 @@ export default function ImplementationsManagementClient({
                       <FormItem>
                         <FormLabel>{t("admin.budgetAllocated")}</FormLabel>
                         <FormControl>
-                          <Input type="number" step="0.01" {...field} />
+                          <Input
+                            type="number"
+                            step="0.01"
+                            value={field.value}
+                            onChange={(e) =>
+                              field.onChange(Number(e.target.value))
+                            }
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -358,7 +359,14 @@ export default function ImplementationsManagementClient({
                       <FormItem>
                         <FormLabel>{t("admin.budgetSpent")}</FormLabel>
                         <FormControl>
-                          <Input type="number" step="0.01" {...field} />
+                          <Input
+                            type="number"
+                            step="0.01"
+                            value={field.value}
+                            onChange={(e) =>
+                              field.onChange(Number(e.target.value))
+                            }
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -774,7 +782,7 @@ export default function ImplementationsManagementClient({
                           type="number"
                           min="0"
                           max="100"
-                          {...field}
+                          value={field.value}
                           onChange={(e) =>
                             field.onChange(Number(e.target.value))
                           }
@@ -793,7 +801,14 @@ export default function ImplementationsManagementClient({
                     <FormItem>
                       <FormLabel>{t("admin.budgetAllocated")}</FormLabel>
                       <FormControl>
-                        <Input type="number" step="0.01" {...field} />
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={field.value}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -806,7 +821,14 @@ export default function ImplementationsManagementClient({
                     <FormItem>
                       <FormLabel>{t("admin.budgetSpent")}</FormLabel>
                       <FormControl>
-                        <Input type="number" step="0.01" {...field} />
+                        <Input
+                          type="number"
+                          step="0.01"
+                          value={field.value}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

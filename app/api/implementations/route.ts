@@ -3,7 +3,10 @@ import { db } from "@/lib/db";
 import { admins, implementations, proposals } from "@/lib/db/schema";
 import { getServerSession } from "@/lib/auth";
 import { checkAdminRole } from "@/lib/utils";
-import { implementationSchema } from "@/lib/validations/implimentation";
+import {
+  implementationSchema,
+  implementationSchemaBackend,
+} from "@/lib/validations/implimentation";
 import { and, eq } from "drizzle-orm";
 
 export async function POST(request: NextRequest) {
@@ -17,7 +20,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
     const body = await request.json();
-    const data = implementationSchema.safeParse(body);
+    const data = implementationSchemaBackend.safeParse(body);
     if (!data.success) {
       return NextResponse.json(
         { error: "Invalid data", issues: data.error.issues },
@@ -44,6 +47,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log("Creating implementation for proposal:", data.data);
+
     const [newProposal] = await db
       .insert(implementations)
       .values({
@@ -52,9 +57,9 @@ export async function POST(request: NextRequest) {
         progressPercentage: data.data.progressPercentage,
         budgetAllocated: data.data.budgetAllocated,
         budgetSpent: data.data.budgetSpent,
-        startDate: data.data.startDate,
-        expectedCompletion: data.data.expectedCompletion,
-        actualCompletion: data.data.actualCompletion,
+        startDate: data.data.startDate.toISOString(),
+        expectedCompletion: data.data.expectedCompletion.toISOString(),
+        actualCompletion: data.data.actualCompletion?.toISOString(),
         notes: data.data.notes,
         updatedBy: session.user.id,
       })

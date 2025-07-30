@@ -209,11 +209,15 @@ export default function DashboardClient({
           </TabsList>
 
           <TabsContent value="vote">
-            <VotingInterface proposals={proposals} userVotes={userVotes} />
+            <VotingInterface
+              proposals={proposals || []}
+              userVotes={userVotes}
+            />
           </TabsContent>
 
           <TabsContent value="feedback">
             <FeedbackForm
+              proposals={proposals}
               userRegion={fayda?.region}
               userWoreda={fayda?.woreda}
             />

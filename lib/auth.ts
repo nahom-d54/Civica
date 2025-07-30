@@ -8,7 +8,12 @@ import {
 } from "better-auth/plugins";
 import { headers } from "next/headers";
 import { ac, admin, superadmin, user } from "./permissions";
-import { generateSignedJwt } from "./authUtils";
+import {
+  claims,
+  generateSignedJwt,
+  getUserInfoCustom,
+  updateFaydaUserProfile,
+} from "./authUtils";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -39,11 +44,16 @@ export const auth = betterAuth({
       config: [
         {
           providerId: "verifayda",
+          overrideUserInfo: true,
           discoveryUrl:
             "https://esignet.ida.fayda.et/.well-known/openid-configuration",
           clientId: process.env.ESIGNET_CLIENT_ID as string,
+          userInfoUrl: process.env.ESIGNET_USERINFO_ENDPOINT as string,
           scopes: ["openid", "profile", "email"],
           redirectURI: `${process.env.BETTER_AUTH_URL}/callback`,
+          authorizationUrlParams: {
+            claims: JSON.stringify(claims),
+          },
           injectClientAssertion: async ({ params }) => {
             const clientAssertion = await generateSignedJwt();
             return {
@@ -51,6 +61,27 @@ export const auth = betterAuth({
               client_assertion: clientAssertion,
               client_assertion_type:
                 "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+            };
+          },
+          getUserInfo: async (tokens) => {
+            const payload = await getUserInfoCustom(
+              tokens,
+              process.env.ESIGNET_USERINFO_ENDPOINT as string
+            );
+            // Map payload to expected shape
+            return {
+              id: payload.sub as string,
+              email: payload.email as string,
+              name: payload.name as string,
+              emailVerified: true,
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              address: payload.address || null,
+              birthdate: payload.birthdate || null,
+              fayda_id: payload.sub as string,
+              phone_number: payload.phone_number || null,
+              nationality: payload.nationality || null,
+              // ... map other fields as needed
             };
           },
         },

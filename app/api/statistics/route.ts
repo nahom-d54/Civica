@@ -66,9 +66,10 @@ export async function GET(_request: NextRequest) {
       .innerJoin(fayda, eq(votes.userId, fayda.userId))
       .groupBy(fayda.region);
 
-    const totalVotesCast = voteCounts
-      .reduce((acc, obj) => acc + obj.count, 0)
-      .toLocaleString();
+    const totalVotesCast = voteCounts.reduce(
+      (acc, vote) => Number(acc) + Number(vote.count),
+      0
+    );
     const [activeVoters] = await db
       .select({
         count: sql<number>`COUNT(DISTINCT ${votes.userId})`.as("count"),

@@ -7,13 +7,18 @@ import { headers } from "next/headers";
 
 export async function POST(request: NextRequest) {
   try {
-    const { userId, title, message, category, priority, region, woreda } =
+    const session = await getServerSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { title, message, category, priority, region, woreda } =
       await request.json();
 
     const [feedbackData] = await db
       .insert(feedback)
       .values({
-        userId,
+        userId: session.user.id,
         title,
         message,
         category,
@@ -41,7 +46,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { searchParams } = new URL(request.url);
+  const searchParams = request.nextUrl.searchParams;
   const _locale = searchParams.get("locale") || "am-et"; // not used now
   const page = parseInt(searchParams.get("page") || "1", 10);
   const limit = parseInt(searchParams.get("limit") || "10", 10);

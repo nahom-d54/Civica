@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { proposals, user, admins } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import ProposalsManagementClient from "./proposals-management-client";
+import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 
 export default async function ProposalsManagementPage({
   params,
@@ -28,10 +29,11 @@ export default async function ProposalsManagementPage({
   });
 
   return (
-    <ProposalsManagementClient
-      proposals={allProposals}
-      adminRole={adminRole}
-      locale={locale}
-    />
+    <ReactQueryProvider>
+      <ProposalsManagementClient
+        proposals={allProposals}
+        adminRole={adminRole}
+      />
+    </ReactQueryProvider>
   );
 }

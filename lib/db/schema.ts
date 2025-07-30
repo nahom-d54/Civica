@@ -145,8 +145,6 @@ export const fayda = pgTable("fayda", {
   woreda: varchar("woreda", { length: 100 }).notNull(),
   nationality: varchar("nationality", { length: 100 }).notNull(),
   phone_number: varchar("phone_number", { length: 20 }),
-  fcn: varchar("fcn", { length: 30 }).notNull(),
-  fin: varchar("fin", { length: 30 }),
   date_of_issue: date("date_of_issue"),
   date_of_expiry: date("date_of_expiry"),
 });
@@ -174,14 +172,6 @@ export const appState = pgTable("app_state", {
   maintenanceIsActiveUpdatedAt: timestamp(
     "maintenance_is_active_updated_at"
   ).defaultNow(),
-});
-
-export const oicdSessions = pgTable("oidc_sessions", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  state: varchar("state", { length: 255 }).notNull(),
-  codeVerifier: text("code_verifier").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  expiresAt: timestamp("expires_at").notNull(),
 });
 
 // Relations

@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { db } from "@/lib/db";
 import { eq } from "drizzle-orm";
 import { user } from "@/auth-schema";
+import { getServerSession } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Civica - Digital Voting & Community Feedback",
@@ -26,6 +27,16 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const session = await getServerSession();
+  if (!session) {
+    const superadmin = await db.query.user.findFirst({
+      where: eq(user.role, "superadmin"),
+    });
+    if (!superadmin) {
+      redirect("/install");
+    }
+  }
+
   const superadmin = await db.query.user.findFirst({
     where: eq(user.role, "superadmin"),
   });

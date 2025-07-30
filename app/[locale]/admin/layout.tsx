@@ -20,7 +20,7 @@ export default async function AdminLayout({
   });
 
   if (!session) {
-    redirect(`/${locale}/sign-in`);
+    redirect(`/${locale}/auth/sign-in`);
   }
 
   console.log("Session User:", session.user);
