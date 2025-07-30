@@ -7,9 +7,9 @@ import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
   _request: NextRequest,
-  param: Promise<{ id: string }>
+  param: { params: Promise<{ id: string }> }
 ) => {
-  const { id } = await param;
+  const { id } = await param.params;
   const session = await auth.api.getSession({
     headers: await headers(),
   });
