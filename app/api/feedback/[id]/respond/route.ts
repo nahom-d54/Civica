@@ -13,6 +13,7 @@ export async function POST(
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    const { id } = await params;
 
     // Check if user is admin
     const adminRole = await db.query.admins.findFirst({
@@ -30,7 +31,7 @@ export async function POST(
       .set({
         status,
       })
-      .where(eq(feedback.id, params.id));
+      .where(eq(feedback.id, id));
 
     return NextResponse.json({ success: true });
   } catch (error) {

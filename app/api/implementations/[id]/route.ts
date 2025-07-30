@@ -45,8 +45,8 @@ export async function PUT(
       .set({
         status: effectivestatus,
         progressPercentage: data.data.progressPercentage,
-        budgetAllocated: data.data.budgetAllocated,
-        budgetSpent: data.data.budgetSpent,
+        budgetAllocated: String(data.data.budgetAllocated),
+        budgetSpent: String(data.data.budgetSpent),
         startDate: data.data.startDate.toISOString(),
         expectedCompletion: data.data.expectedCompletion.toISOString(),
         actualCompletion: data.data.actualCompletion?.toISOString(),

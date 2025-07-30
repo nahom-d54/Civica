@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { admins, implementations, proposals } from "@/lib/db/schema";
 import { getServerSession } from "@/lib/auth";
 import { checkAdminRole } from "@/lib/utils";
 import {
@@ -8,6 +7,7 @@ import {
   implementationSchemaBackend,
 } from "@/lib/validations/implimentation";
 import { and, eq } from "drizzle-orm";
+import { admins, implementations, proposals } from "@/lib/db/schema";
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,6 +24,12 @@ export async function POST(request: NextRequest) {
     if (!data.success) {
       return NextResponse.json(
         { error: "Invalid data", issues: data.error.issues },
+        { status: 400 }
+      );
+    }
+    if (!data.data.proposalId) {
+      return NextResponse.json(
+        { error: "Proposal ID is required" },
         { status: 400 }
       );
     }
@@ -55,14 +61,14 @@ export async function POST(request: NextRequest) {
         proposalId: data.data.proposalId,
         status: data.data.status,
         progressPercentage: data.data.progressPercentage,
-        budgetAllocated: data.data.budgetAllocated,
-        budgetSpent: data.data.budgetSpent,
+        budgetAllocated: String(data.data.budgetAllocated),
+        budgetSpent: String(data.data.budgetSpent),
         startDate: data.data.startDate.toISOString(),
         expectedCompletion: data.data.expectedCompletion.toISOString(),
         actualCompletion: data.data.actualCompletion?.toISOString(),
         notes: data.data.notes,
         updatedBy: session.user.id,
-      })
+      } as typeof implementations.$inferInsert)
       .returning();
 
     return NextResponse.json({ success: true, proposal: newProposal });

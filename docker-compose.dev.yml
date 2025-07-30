@@ -1,0 +1,41 @@
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nextjs_app
+    restart: always
+    env_file:
+      - .env
+    expose:
+      - 3000
+    user: node
+    ports:
+      - "3000:3000"
+    networks:
+      - app_network
+
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/certs:/etc/nginx/certs
+      # Uncomment the following for SSL
+      # - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - nextjs
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  reciprorx_storage:                       

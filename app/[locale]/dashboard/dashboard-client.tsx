@@ -18,7 +18,7 @@ import {
 import { useRouter } from "next/navigation";
 import VotingInterface from "@/components/voting-interface";
 import FeedbackForm from "@/components/feedback-form";
-import AdminPanel from "@/components/admin-panel";
+// import AdminPanel from "@/components/admin-panel";
 import TransparencyDashboard from "@/components/transparency-dashboard";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import type {

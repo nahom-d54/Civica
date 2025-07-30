@@ -378,7 +378,6 @@ export default function ProposalsManagementClient({
                           onCheckedChange={() =>
                             handleToggleStatus(proposal.id, proposal.isActive)
                           }
-                          size="sm"
                         />
                       </div>
                     </TableCell>

@@ -349,7 +349,7 @@ export default function ComplaintForm({
           <CardContent>
             <div className="space-y-4">
               {!isLoading &&
-                recentComplaint?.map((complaint) => (
+                recentComplaint?.map((complaint: any) => (
                   <div
                     key={complaint.id}
                     className="border rounded-lg p-4 space-y-2"

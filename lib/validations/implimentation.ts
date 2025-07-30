@@ -29,5 +29,5 @@ export const implementationSchemaBackend = z.object({
 });
 
 export type implementationSchemaTypeBackend = z.infer<
-  typeof implementationSchema
+  typeof implementationSchemaBackend
 >;

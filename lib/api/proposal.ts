@@ -1,5 +1,5 @@
-import { proposalSchemaType } from "../schemas";
 import { localeType } from "../types";
+import { proposalSchemaType } from "../validations/proposal";
 
 export const getProposalsForUser = async ({
   locale,
@@ -14,7 +14,7 @@ export const getProposalsForUser = async ({
     throw new Error("Failed to fetch proposals");
   }
   const jsonResponse = await res.json();
-  return Array.isArray(res.proposals) ? res.proposals : [];
+  return Array.isArray(jsonResponse.proposals) ? jsonResponse.proposals : [];
 };
 
 export const createProposal = async (data: proposalSchemaType) => {

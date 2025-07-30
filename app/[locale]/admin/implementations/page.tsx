@@ -1,9 +1,10 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { db } from "@/lib/db";
-import { implementations, proposals, users, admins } from "@/lib/db/schema";
+import { implementations, admins } from "@/lib/db/schema";
 import { eq, desc } from "drizzle-orm";
 import ImplementationsManagementClient from "./implementations-management-client";
+import { ReactQueryProvider } from "@/components/ReactQueryProvider";
 
 export default async function ImplementationsManagementPage({
   params,
@@ -46,11 +47,12 @@ export default async function ImplementationsManagementPage({
   });
 
   return (
-    <ImplementationsManagementClient
-      implementations={allImplementations}
-      proposalsWithoutImplementations={proposalsWithoutImplementations}
-      adminRole={adminRole}
-      locale={locale}
-    />
+    <ReactQueryProvider>
+      <ImplementationsManagementClient
+        implementations={allImplementations}
+        proposalsWithoutImplementations={proposalsWithoutImplementations}
+        adminRole={adminRole}
+      />
+    </ReactQueryProvider>
   );
 }
