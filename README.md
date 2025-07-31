@@ -33,6 +33,7 @@ Fayda is used as the core identity verification mechanism. By integrating Fayda,
 - i18n (Internationalization)
 - Shadcn UI Components
 - Vercel (Deployment)
+- [BetterAuth(Authentication)](https://www.better-auth.com/)
 
 ## 🔒 License
 This project is private and not licensed for public or commercial use.
