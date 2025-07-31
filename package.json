@@ -7,7 +7,7 @@
     "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start",
-    "seed:users": "tsx lib/seeder/seedUsers.ts"
+    "check:intl": "i18n-check --source en-us --locales messages -f next-intl -o undefined -u ./app -r summery"
   },
   "dependencies": {
     "@biomejs/biome": "^2.1.2",
@@ -72,6 +72,7 @@
     "zod": "^4.0.10"
   },
   "devDependencies": {
+    "@lingual/i18n-check": "^0.8.4",
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
