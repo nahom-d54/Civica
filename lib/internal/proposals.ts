@@ -14,15 +14,15 @@ export const getPropsals = async (userData: any) => {
         eq(proposals.scope, "national"),
         and(
           eq(proposals.scope, "regional"),
-          eq(proposals.target, userData?.fayda.region as string)
+          eq(proposals.target, userData?.fayda?.region as string)
         ),
         and(
           eq(proposals.scope, "zoneOrSubcity"),
-          eq(proposals.target, userData?.fayda.zoneOrSubcity as string)
+          eq(proposals.target, userData?.fayda?.zoneOrSubcity as string)
         ),
         and(
           eq(proposals.scope, "woreda"),
-          eq(proposals.target, userData?.fayda.woreda as string)
+          eq(proposals.target, userData?.fayda?.woreda as string)
         )
       )
     ),

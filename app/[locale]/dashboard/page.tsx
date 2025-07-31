@@ -48,37 +48,37 @@ export default async function DashboardPage({
     redirect(`/${locale}/sign-in`);
   }
 
-  const faydaData = await db.query.fayda.findFirst({
-    where: eq(fayda.userId, userData.id),
-  });
+  // const faydaData = await db.query.fayda.findFirst({
+  //   where: eq(fayda.userId, userData.id),
+  // });
   if (userData.role !== "user") return redirect(`/${locale}/admin`);
 
-  if (!faydaData && userData.role === "user") {
-    const userFayda = await auth.api.accountInfo({
-      body: {
-        accountId: userData.fayda_id as string,
-      },
-      headers: await headers(),
-    });
+  // if (!faydaData && userData.role === "user") {
+  //   const userFayda = await auth.api.accountInfo({
+  //     body: {
+  //       accountId: userData.fayda_id as string,
+  //     },
+  //     headers: await headers(),
+  //   });
 
-    if (!userFayda || !userFayda.data) {
-      throw new Error("Failed to fetch user data from provider");
-    }
+  //   if (!userFayda || !userFayda.data) {
+  //     throw new Error("Failed to fetch user data from provider");
+  //   }
 
-    await updateFaydaUserProfile({
-      sub: userData.id as string,
-      name: userFayda.data.name as string,
-      email: userFayda.data.email as string,
-      birthdate: userFayda.data.birthdate as string,
-      address: {
-        zone: userFayda.data.address.zone as string,
-        woreda: userFayda.data.address.woreda as string,
-        region: userFayda.data.address.region as string,
-      },
-      phone_number: userFayda.data.phone_number as string,
-      nationality: userFayda.data.nationality as string,
-    });
-  }
+  //   await updateFaydaUserProfile({
+  //     sub: userData.id as string,
+  //     name: userFayda.data.name as string,
+  //     email: userFayda.data.email as string,
+  //     birthdate: userFayda.data.birthdate as string,
+  //     address: {
+  //       zone: userFayda.data.address.zone as string,
+  //       woreda: userFayda.data.address.woreda as string,
+  //       region: userFayda.data.address.region as string,
+  //     },
+  //     phone_number: userFayda.data.phone_number as string,
+  //     nationality: userFayda.data.nationality as string,
+  //   });
+  // }
 
   // Check if user is admin
   const adminRole = await db.query.admins.findFirst({

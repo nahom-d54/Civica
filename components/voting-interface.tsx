@@ -109,11 +109,7 @@ export default function VotingInterface({
   };
 
   const formatDate = (date: string | Date) => {
-    return new Date(date).toLocaleDateString("am-ET", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
+    return new Date(date).toDateString();
   };
 
   const getDaysRemaining = (endDate: string | Date) => {

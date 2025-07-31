@@ -3,6 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "./db";
 import {
   admin as adminPlugin,
+  createAuthMiddleware,
   customSession,
   genericOAuth,
 } from "better-auth/plugins";
@@ -14,8 +15,40 @@ import {
   getUserInfoCustom,
   updateFaydaUserProfile,
 } from "./authUtils";
+import { eq } from "drizzle-orm";
+import { user as userSchema } from "@/lib/db/schema";
 
 export const auth = betterAuth({
+  hooks: {
+    after: createAuthMiddleware(async (ctx) => {
+      if (ctx.path.includes("oauth2/callback/verifayda")) {
+        const newSession = ctx.context.newSession;
+        if (newSession) {
+          const userFayda = await auth.api.accountInfo({
+            body: {
+              accountId: newSession.user.fayda_id as string,
+            },
+            headers: await headers(),
+          });
+          if (userFayda?.data) {
+            await updateFaydaUserProfile({
+              sub: newSession.user.id as string,
+              name: userFayda.data.name as string,
+              email: userFayda.data.email as string,
+              birthdate: userFayda.data.birthdate as string,
+              address: {
+                zone: userFayda.data.address.zone as string,
+                woreda: userFayda.data.address.woreda as string,
+                region: userFayda.data.address.region as string,
+              },
+              phone_number: userFayda.data.phone_number as string,
+              nationality: userFayda.data.nationality as string,
+            });
+          }
+        }
+      }
+    }),
+  },
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
@@ -88,11 +121,15 @@ export const auth = betterAuth({
       ],
     }),
     customSession(async ({ user, session }) => {
+      const userData = await db.query.user.findFirst({
+        where: eq(userSchema.id, user.id),
+      });
       const data = {
         user: {
           ...user,
           // @ts-expect-error: user object contains 'role' at runtime
           role: user.role || "user",
+          fayda_id: userData?.fayda_id || null,
         },
         session: {
           ...session,
@@ -105,8 +142,6 @@ export const auth = betterAuth({
     additionalFields: {
       fayda_id: {
         type: "string",
-        label: "Fayda ID",
-        description: "Unique identifier for the user in the Fayda system",
       },
     },
   },
