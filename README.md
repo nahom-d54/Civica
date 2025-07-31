@@ -1,7 +1,7 @@
 # 🏛️ Civica – Fayda-Verified Digital Voting & Community Feedback
 
 ## 👥 Contributors
-- Nahom Dereje
+- Nahom Dereje -> nahom@nahom.codes
 
 ## 📝 Project Synopsis
 
